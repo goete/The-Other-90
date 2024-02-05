@@ -1,9 +1,7 @@
 package model;
 
-import java.util.ArrayList;
-
 public class Player {
-    private String name;
+    private final String name;
     private int sumEliminationEasyHighScore;
     private int sumEliminationMediumHighScore;
     private int sumEliminationHardHighScore;
@@ -20,7 +18,6 @@ public class Player {
         this.wordRecollectionMediumHighScore = 0;
         this.wordRecollectionEasyHighScore = 0;
     }
-
 
     public String getName() {
         return name;
