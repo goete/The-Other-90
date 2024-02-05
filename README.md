@@ -12,7 +12,9 @@ This game contains of two game modes, each with three difficulties:
 - Hard
     - Gives 4-6 numbers and the player must eliminate 0-6
     - Also includes negatives
-      **Seen the word game**
+
+      **Word Recollection**
+
 - Easy
     - Common words
     - Lots of time
@@ -38,6 +40,6 @@ essentially stopped working.
    round.
 4. As a user, I want to be able to have my high score separate from other people's by my name
 5. As a user, I want to be able to be able to actually play the games
-6. As a user, I want to be able to see the time left for each turn
+6. As a user, I want to be able to see the time I have for each turn
 
 
