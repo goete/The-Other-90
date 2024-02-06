@@ -9,6 +9,7 @@ public class Player {
     private int wordRecollectionMediumHighScore;
     private int wordRecollectionHardHighScore;
 
+    // EFFECTS: creates an instance of this class with all high scores set to 0 and the given name
     public Player(String name) {
         this.name = name;
         this.sumEliminationEasyHighScore = 0;
@@ -27,6 +28,8 @@ public class Player {
         return sumEliminationEasyHighScore;
     }
 
+    //EFFECTS: updates the high score for Sum Elimination: Easy if given is greater than current
+    //MODIFIES: this
     public void setSumEliminationEasyHighScore(int sumEliminationEasyHighScore) {
         if (this.sumEliminationEasyHighScore < sumEliminationEasyHighScore) {
             this.sumEliminationEasyHighScore = sumEliminationEasyHighScore;
@@ -37,6 +40,8 @@ public class Player {
         return sumEliminationMediumHighScore;
     }
 
+    //EFFECTS: updates the high score for Sum Elimination: Medium if given is greater than current
+    //MODIFIES: this
     public void setSumEliminationMediumHighScore(int sumEliminationMediumHighScore) {
         if (this.sumEliminationMediumHighScore < sumEliminationMediumHighScore) {
             this.sumEliminationMediumHighScore = sumEliminationMediumHighScore;
@@ -47,6 +52,8 @@ public class Player {
         return sumEliminationHardHighScore;
     }
 
+    //EFFECTS: updates the high score for Sum Elimination: Hard if given is greater than current
+    //MODIFIES: this
     public void setSumEliminationHardHighScore(int sumEliminationHardHighScore) {
         if (this.sumEliminationHardHighScore < sumEliminationHardHighScore) {
             this.sumEliminationHardHighScore = sumEliminationHardHighScore;
@@ -57,6 +64,8 @@ public class Player {
         return wordRecollectionEasyHighScore;
     }
 
+    //EFFECTS: updates the high score for Word Recollection: Easy if given is greater than current
+    //MODIFIES: this
     public void setWordRecollectionEasyHighScore(int wordRecollectionEasyHighScore) {
         if (this.wordRecollectionEasyHighScore < wordRecollectionEasyHighScore) {
             this.wordRecollectionEasyHighScore = wordRecollectionEasyHighScore;
@@ -67,6 +76,8 @@ public class Player {
         return wordRecollectionMediumHighScore;
     }
 
+    //EFFECTS: updates the high score for Word Recollection: Medium if given is greater than current
+    //MODIFIES: this
     public void setWordRecollectionMediumHighScore(int wordRecollectionMediumHighScore) {
         if (this.wordRecollectionMediumHighScore < wordRecollectionMediumHighScore) {
             this.wordRecollectionMediumHighScore = wordRecollectionMediumHighScore;
@@ -77,24 +88,29 @@ public class Player {
         return wordRecollectionHardHighScore;
     }
 
+    //EFFECTS: updates the high score for Word Recollection: Hard if given is greater than current
+    //MODIFIES: this
     public void setWordRecollectionHardHighScore(int wordRecollectionHardHighScore) {
         if (this.wordRecollectionHardHighScore < wordRecollectionHardHighScore) {
             this.wordRecollectionHardHighScore = wordRecollectionHardHighScore;
         }
     }
 
+    // EFFECTS: returns the Sum of all the Word Recollection high scores
     public int getSumOfWordRecollection() {
         return this.wordRecollectionEasyHighScore
                 + this.wordRecollectionHardHighScore
                 + this.wordRecollectionMediumHighScore;
     }
 
+    // EFFECTS: returns the Sum of all the Sum Elimination high scores
     public int getSumOfSumElimination() {
         return this.sumEliminationEasyHighScore
                 + this.sumEliminationMediumHighScore
                 + this.sumEliminationHardHighScore;
     }
 
+    // EFFECTS: returns the Sum of all the Word Recollection and Sum Elimination high scores
     public int getSumOfTotalHighScores() {
         return this.getSumOfWordRecollection() + this.getSumOfSumElimination();
     }
