@@ -10,7 +10,7 @@ This game contains of two game modes, each with three difficulties:
 - Medium
     - Gives 4 or 5 numbers and the player must eliminate 1 or 2 to achieve the sum
 - Hard
-    - Gives 4-6 numbers and the player must eliminate 0-6
+    - Gives 4-6 numbers and the player must eliminate 0-4
     - Also includes negatives
 
       **Word Recollection**
