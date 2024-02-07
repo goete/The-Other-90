@@ -96,24 +96,6 @@ public class Player {
         }
     }
 
-    // EFFECTS: returns the Sum of all the Word Recollection high scores
-    public int getSumOfWordRecollection() {
-        return this.wordRecollectionEasyHighScore
-                + this.wordRecollectionHardHighScore
-                + this.wordRecollectionMediumHighScore;
-    }
-
-    // EFFECTS: returns the Sum of all the Sum Elimination high scores
-    public int getSumOfSumElimination() {
-        return this.sumEliminationEasyHighScore
-                + this.sumEliminationMediumHighScore
-                + this.sumEliminationHardHighScore;
-    }
-
-    // EFFECTS: returns the Sum of all the Word Recollection and Sum Elimination high scores
-    public int getSumOfTotalHighScores() {
-        return this.getSumOfWordRecollection() + this.getSumOfSumElimination();
-    }
 
 
 }

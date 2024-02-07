@@ -20,9 +20,6 @@ class PlayerTest {
     @Test
     public void setUpTest() {
         assertEquals("John", john.getName());
-        assertEquals(0, john.getSumOfSumElimination());
-        assertEquals(0, john.getSumOfWordRecollection());
-        assertEquals(0, john.getSumOfTotalHighScores());
         assertEquals(0, john.getSumEliminationEasyHighScore());
         assertEquals(0, john.getSumEliminationHardHighScore());
         assertEquals(0, john.getSumEliminationMediumHighScore());
@@ -39,9 +36,6 @@ class PlayerTest {
         assertEquals(5, playerOne.getSumEliminationHardHighScore());
         playerOne.setSumEliminationMediumHighScore(5);
         assertEquals(5, playerOne.getSumEliminationMediumHighScore());
-        assertEquals(15, playerOne.getSumOfSumElimination());
-        assertEquals(15, playerOne.getSumOfTotalHighScores());
-        assertEquals(0, john.getSumOfTotalHighScores());
 
     }
 
@@ -53,8 +47,6 @@ class PlayerTest {
         assertEquals(5, playerOne.getWordRecollectionMediumHighScore());
         playerOne.setWordRecollectionHardHighScore(5);
         assertEquals(5, playerOne.getWordRecollectionHardHighScore());
-        assertEquals(15, playerOne.getSumOfWordRecollection());
-        assertEquals(15, playerOne.getSumOfTotalHighScores());
     }
 
     @Test
@@ -65,8 +57,6 @@ class PlayerTest {
         assertEquals(5, playerOne.getWordRecollectionMediumHighScore());
         playerOne.setWordRecollectionHardHighScore(5);
         assertEquals(5, playerOne.getWordRecollectionHardHighScore());
-        assertEquals(15, playerOne.getSumOfWordRecollection());
-        assertEquals(15, playerOne.getSumOfTotalHighScores());
 
         playerOne.setSumEliminationEasyHighScore(5);
         assertEquals(5, playerOne.getSumEliminationEasyHighScore());
@@ -74,9 +64,6 @@ class PlayerTest {
         assertEquals(5, playerOne.getSumEliminationHardHighScore());
         playerOne.setSumEliminationMediumHighScore(5);
         assertEquals(5, playerOne.getSumEliminationMediumHighScore());
-        assertEquals(15, playerOne.getSumOfSumElimination());
-        assertEquals(30, playerOne.getSumOfTotalHighScores());
-        assertEquals(0, john.getSumOfTotalHighScores());
     }
 
     @Test
@@ -87,8 +74,6 @@ class PlayerTest {
         assertEquals(5, playerOne.getWordRecollectionMediumHighScore());
         playerOne.setWordRecollectionHardHighScore(5);
         assertEquals(5, playerOne.getWordRecollectionHardHighScore());
-        assertEquals(15, playerOne.getSumOfWordRecollection());
-        assertEquals(15, playerOne.getSumOfTotalHighScores());
 
         playerOne.setSumEliminationEasyHighScore(5);
         assertEquals(5, playerOne.getSumEliminationEasyHighScore());
@@ -96,9 +81,6 @@ class PlayerTest {
         assertEquals(5, playerOne.getSumEliminationHardHighScore());
         playerOne.setSumEliminationMediumHighScore(5);
         assertEquals(5, playerOne.getSumEliminationMediumHighScore());
-        assertEquals(15, playerOne.getSumOfSumElimination());
-        assertEquals(30, playerOne.getSumOfTotalHighScores());
-        assertEquals(0, john.getSumOfTotalHighScores());
 
         playerOne.setWordRecollectionEasyHighScore(1);
         assertEquals(5, playerOne.getWordRecollectionEasyHighScore());
@@ -106,8 +88,6 @@ class PlayerTest {
         assertEquals(5, playerOne.getWordRecollectionMediumHighScore());
         playerOne.setWordRecollectionHardHighScore(1);
         assertEquals(5, playerOne.getWordRecollectionHardHighScore());
-        assertEquals(15, playerOne.getSumOfWordRecollection());
-        assertEquals(30, playerOne.getSumOfTotalHighScores());
 
         playerOne.setSumEliminationEasyHighScore(1);
         assertEquals(5, playerOne.getSumEliminationEasyHighScore());
@@ -115,9 +95,6 @@ class PlayerTest {
         assertEquals(5, playerOne.getSumEliminationHardHighScore());
         playerOne.setSumEliminationMediumHighScore(1);
         assertEquals(5, playerOne.getSumEliminationMediumHighScore());
-        assertEquals(15, playerOne.getSumOfSumElimination());
-        assertEquals(30, playerOne.getSumOfTotalHighScores());
-        assertEquals(0, john.getSumOfTotalHighScores());
     }
 
     @Test
@@ -128,8 +105,6 @@ class PlayerTest {
         assertEquals(5, playerOne.getWordRecollectionMediumHighScore());
         playerOne.setWordRecollectionHardHighScore(5);
         assertEquals(5, playerOne.getWordRecollectionHardHighScore());
-        assertEquals(15, playerOne.getSumOfWordRecollection());
-        assertEquals(15, playerOne.getSumOfTotalHighScores());
 
         playerOne.setSumEliminationEasyHighScore(5);
         assertEquals(5, playerOne.getSumEliminationEasyHighScore());
@@ -137,9 +112,6 @@ class PlayerTest {
         assertEquals(5, playerOne.getSumEliminationHardHighScore());
         playerOne.setSumEliminationMediumHighScore(5);
         assertEquals(5, playerOne.getSumEliminationMediumHighScore());
-        assertEquals(15, playerOne.getSumOfSumElimination());
-        assertEquals(30, playerOne.getSumOfTotalHighScores());
-        assertEquals(0, john.getSumOfTotalHighScores());
 
         playerOne.setWordRecollectionEasyHighScore(1);
         assertEquals(5, playerOne.getWordRecollectionEasyHighScore());
@@ -147,8 +119,6 @@ class PlayerTest {
         assertEquals(5, playerOne.getWordRecollectionMediumHighScore());
         playerOne.setWordRecollectionHardHighScore(1);
         assertEquals(5, playerOne.getWordRecollectionHardHighScore());
-        assertEquals(15, playerOne.getSumOfWordRecollection());
-        assertEquals(30, playerOne.getSumOfTotalHighScores());
 
         playerOne.setSumEliminationEasyHighScore(1);
         assertEquals(5, playerOne.getSumEliminationEasyHighScore());
@@ -156,9 +126,6 @@ class PlayerTest {
         assertEquals(5, playerOne.getSumEliminationHardHighScore());
         playerOne.setSumEliminationMediumHighScore(1);
         assertEquals(5, playerOne.getSumEliminationMediumHighScore());
-        assertEquals(15, playerOne.getSumOfSumElimination());
-        assertEquals(30, playerOne.getSumOfTotalHighScores());
-        assertEquals(0, john.getSumOfTotalHighScores());
 
         playerOne.setWordRecollectionEasyHighScore(10);
         assertEquals(10, playerOne.getWordRecollectionEasyHighScore());
@@ -166,8 +133,6 @@ class PlayerTest {
         assertEquals(10, playerOne.getWordRecollectionMediumHighScore());
         playerOne.setWordRecollectionHardHighScore(10);
         assertEquals(10, playerOne.getWordRecollectionHardHighScore());
-        assertEquals(30, playerOne.getSumOfWordRecollection());
-        assertEquals(45, playerOne.getSumOfTotalHighScores());
 
         playerOne.setSumEliminationEasyHighScore(10);
         assertEquals(10, playerOne.getSumEliminationEasyHighScore());
@@ -175,9 +140,6 @@ class PlayerTest {
         assertEquals(10, playerOne.getSumEliminationHardHighScore());
         playerOne.setSumEliminationMediumHighScore(10);
         assertEquals(10, playerOne.getSumEliminationMediumHighScore());
-        assertEquals(30, playerOne.getSumOfSumElimination());
-        assertEquals(60, playerOne.getSumOfTotalHighScores());
-        assertEquals(0, john.getSumOfTotalHighScores());
 
     }
 
