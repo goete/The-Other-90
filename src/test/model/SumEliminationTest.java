@@ -83,6 +83,9 @@ public class SumEliminationTest {
         assertTrue(this.sumEasy.isAnswerCorrect("1 4 5"));
         assertTrue(this.sumEasy.isAnswerCorrect("1 4 3 2"));
         assertFalse(this.sumEasy.isAnswerCorrect("3  4"));
+
+        // checking to make sure the guard is in place and works
+        assertFalse(this.sumEasy.isAnswerCorrect("a 3 2 3"));
     }
 
     @Test
