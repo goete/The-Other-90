@@ -32,6 +32,8 @@ This project was inspired by the game in Big Brain Academy which my best friend 
 we were children. This will serve as a way for us to continue playing the game together now that both of our Wii's have
 essentially stopped working.
 
+Words for Word Recollection found on https://github.com/first20hours/google-10000-english.
+
 ## User Stories
 
 1. As a user, I want to be able to choose which game mode and difficulty I am going to play.
