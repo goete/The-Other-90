@@ -51,7 +51,7 @@ public class SumElimination extends Game {
     // EFFECTS: Returns the list of the numbers for the round shuffled
     public ArrayList<Integer> getNextNumbers() {
         //Min + (int)(Math.random() * ((Max - Min) + 1)) gives number [Min, Max]
-        this.numbers = null;
+        this.numbers = new ArrayList<>();
         for (int i = 0; i < this.lowerNumberOfGiven + (int) (Math.random()
                 * ((this.upperNumberOfGiven - this.lowerNumberOfGiven) + 1)); i++) {
             this.numbers.add(this.lowerBound + (int) (Math.random() * ((this.upperBound - this.lowerBound) + 1)));

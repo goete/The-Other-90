@@ -61,8 +61,8 @@ public class SumEliminationTest {
     @Test
     public void correctSum() {
         sumEasy.setTarget(5);
-        assertEquals(true, sumEasy.isSumCorrect(5));
-        assertEquals(false, sumEasy.isSumCorrect(15));
+        assertTrue(sumEasy.isSumCorrect(5));
+        assertFalse(sumEasy.isSumCorrect(15));
     }
 
     @Test
@@ -85,5 +85,40 @@ public class SumEliminationTest {
         assertFalse(this.sumEasy.isAnswerCorrect("3  4"));
     }
 
+    @Test
+    public void nextNumbersEasyTest() {
+        // holding so the generation doesn't get triggered
+        ArrayList<Integer> hold = this.sumEasy.getNextNumbers();
+        for (int n : hold) {
+            assertTrue(n >= this.sumEasy.getLowerBound());
+            assertTrue(n <= this.sumEasy.getUpperBound());
+        }
+        assertTrue(hold.size() <= this.sumEasy.getUpperNumberOfGiven());
+        assertTrue(hold.size() >= this.sumEasy.getLowerNumberOfGiven());
+    }
+
+    @Test
+    public void nextNumbersMediumTest() {
+        // holding so the generation doesn't get triggered
+        ArrayList<Integer> hold = this.sumMed.getNextNumbers();
+        for (int n : hold) {
+            assertTrue(n >= this.sumMed.getLowerBound());
+            assertTrue(n <= this.sumMed.getUpperBound());
+        }
+        assertTrue(hold.size() <= this.sumMed.getUpperNumberOfGiven());
+        assertTrue(hold.size() >= this.sumMed.getLowerNumberOfGiven());
+    }
+
+    @Test
+    public void nextNumbersHardTest() {
+        // holding so the generation doesn't get triggered
+        ArrayList<Integer> hold = this.sumHard.getNextNumbers();
+        for (int n : hold) {
+            assertTrue(n >= this.sumHard.getLowerBound());
+            assertTrue(n <= this.sumHard.getUpperBound());
+        }
+        assertTrue(hold.size() <= this.sumHard.getUpperNumberOfGiven());
+        assertTrue(hold.size() >= this.sumHard.getLowerNumberOfGiven());
+    }
 
 }
