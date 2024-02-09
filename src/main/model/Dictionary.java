@@ -6,7 +6,6 @@ import java.util.Scanner;
 
 public class Dictionary {
     private ArrayList<String> dictionary;
-    private Scanner input = null;
     private final String fileName;
 
     // REQUIRES: difficulty is one of Easy, Medium, Hard
@@ -20,14 +19,16 @@ public class Dictionary {
             this.fileName = "data/WordsForHard";
         }
         this.dictionary = new ArrayList<>();
+        Scanner input = null;
         try {
-            this.input = new Scanner(new File(fileName));
+            input = new Scanner(new File(fileName));
         } catch (Exception e) {
             e.printStackTrace();
         }
-        while (this.input.hasNext()) {
-            this.dictionary.add(this.input.next());
-            this.input.nextLine();
+        // Works because files end with an empty line
+        while (input.hasNext()) {
+            this.dictionary.add(input.next());
+            input.nextLine();
         }
     }
 
