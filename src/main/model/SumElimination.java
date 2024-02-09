@@ -50,21 +50,17 @@ public class SumElimination extends Game {
     public ArrayList<Integer> getNextNumbers() {
         //Min + (int)(Math.random() * ((Max - Min) + 1)) gives number [Min, Max]
         this.numbers = new ArrayList<>();
-        for (int i = 0; i < this.randomNumberGenerator(this.lowerNumberOfGiven, this.upperNumberOfGiven); i++) {
-            this.numbers.add(this.randomNumberGenerator(this.lowerBound, this.upperBound));
+        for (int i = 0; i < super.randomNumberGenerator(this.lowerNumberOfGiven, this.upperNumberOfGiven); i++) {
+            this.numbers.add(super.randomNumberGenerator(this.lowerBound, this.upperBound));
 
         }
-        for (int n = 0; n < this.randomNumberGenerator(this.lowerNumberToGetRidOf, this.upperNumberToGetRidOf); n++) {
+        for (int n = 0; n < super.randomNumberGenerator(this.lowerNumberToGetRidOf, this.upperNumberToGetRidOf); n++) {
             this.target += this.numbers.get(n);
         }
         Collections.shuffle(numbers);
         return this.numbers;
     }
 
-    private int randomNumberGenerator(int min, int max) {
-        //Min + (int)(Math.random() * ((Max - Min) + 1)) gives number [Min, Max]
-        return min + (int) (Math.random() * ((max - min) + 1));
-    }
 
     public int getTarget() {
         return this.target;

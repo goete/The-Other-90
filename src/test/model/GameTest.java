@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class GameTest {
     Game easy;
@@ -31,6 +32,14 @@ public class GameTest {
         assertEquals(1, this.easy.getCurrentScore());
         this.easy.addOneToScore();
         assertEquals(2, this.easy.getCurrentScore());
-        
+    }
+
+    @Test
+    public void boundRandomTests() {
+        assertTrue(easy.randomNumberGenerator(0, 10) <= 10 && easy.randomNumberGenerator(0, 10) >= 0);
+        assertTrue(easy.randomNumberGenerator(0, 100) <= 100 && easy.randomNumberGenerator(0, 100) >= 0);
+        assertTrue(easy.randomNumberGenerator(10, 10) == 10 && easy.randomNumberGenerator(0, 0) == 0);
+
+
     }
 }
