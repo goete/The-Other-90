@@ -3,7 +3,7 @@ package model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class DictionaryTest {
     Dictionary dictionaryEasy;
@@ -25,30 +25,61 @@ public class DictionaryTest {
     }
 
     @Test
-    public void sizeTesting() {
-        assertEquals(463, this.dictionaryEasy.getSize());
-        assertEquals(897, this.dictionaryMedium.getSize());
-        assertEquals(1310, this.dictionaryHard.getSize());
-    }
-
-    @Test
     public void fileNameTest() {
         assertEquals("data/WordsForEasy", this.dictionaryEasy.getFileName());
         assertEquals("data/WordsForMedium", this.dictionaryMedium.getFileName());
         assertEquals("data/WordsForHard", this.dictionaryHard.getFileName());
     }
 
+    @Test()
+    public void errorThrowingWorks() {
+
+    }
+
     @Test
     public void testingFirstWord() {
-        assertEquals("the", this.dictionaryEasy.getDictionary()[0]);
-        assertEquals("the", this.dictionaryMedium.getDictionary()[0]);
-        assertEquals("the", this.dictionaryHard.getDictionary()[0]);
+        assertEquals("the", this.dictionaryEasy.getDictionary().get(0));
+        assertEquals("the", this.dictionaryMedium.getDictionary().get(0));
+        assertEquals("the", this.dictionaryHard.getDictionary().get(0));
     }
 
     @Test
     public void testingLastWord() {
-        assertEquals("trademark", this.dictionaryHard.getDictionary()[this.dictionaryHard.getNumOfWords() - 1]);
-        assertEquals("together", this.dictionaryMedium.getDictionary()[this.dictionaryMedium.getNumOfWords() - 1]);
-        assertEquals("flow", this.dictionaryEasy.getDictionary()[this.dictionaryEasy.getNumOfWords() - 1]);
+        assertEquals("trademark", this.dictionaryHard.getDictionary().get(this.dictionaryHard.getNumOfWords() - 1));
+        assertEquals("together", this.dictionaryMedium.getDictionary().get(this.dictionaryMedium.getNumOfWords() - 1));
+        assertEquals("flow", this.dictionaryEasy.getDictionary().get(this.dictionaryEasy.getNumOfWords() - 1));
     }
+
+    @Test
+    public void emptyTest() {
+        assertFalse(this.dictionaryEasy.isEmpty());
+        while (this.dictionaryEasy.getNumOfWords() > 0) {
+            this.dictionaryEasy.getRandomAndRemove();
+        }
+        assertTrue(this.dictionaryEasy.isEmpty());
+    }
+
+    @Test
+    public void containingTesting() {
+        assertTrue(this.dictionaryEasy.contains("the"));
+        assertTrue(this.dictionaryMedium.contains("the"));
+        assertTrue(this.dictionaryHard.contains("the"));
+
+        assertFalse(this.dictionaryEasy.contains("i am not in there good try though"));
+        assertFalse(this.dictionaryMedium.contains("i am not in there good try though"));
+        assertFalse(this.dictionaryHard.contains("i am not in there good try though"));
+
+    }
+
+    @Test
+    public void testingGettingWords() {
+        assertFalse(this.dictionaryEasy.contains(this.dictionaryEasy.getRandomAndRemove()));
+        assertTrue(this.dictionaryEasy2.contains(this.dictionaryEasy.getRandomAndRemove()));
+        assertFalse(this.dictionaryMedium.contains(this.dictionaryMedium.getRandomAndRemove()));
+        assertTrue(this.dictionaryMedium2.contains(this.dictionaryMedium.getRandomAndRemove()));
+        assertFalse(this.dictionaryHard.contains(this.dictionaryHard.getRandomAndRemove()));
+        assertTrue(this.dictionaryHard2.contains(this.dictionaryHard.getRandomAndRemove()));
+    }
+
+
 }

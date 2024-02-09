@@ -1,55 +1,63 @@
 package model;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Scanner;
 
-
 public class Dictionary {
-    private String[] dictionary;
-    private int size;
+    private ArrayList<String> dictionary;
     private Scanner input = null;
-    private final int numOfWords;
     private final String fileName;
 
     // REQUIRES: difficulty is one of Easy, Medium, Hard
     public Dictionary(String difficulty) {
+        // While this could be written in less lines, this adds a guard to the Scanner
         if (difficulty.equals("Easy")) {
-            this.numOfWords = 463;
             this.fileName = "data/WordsForEasy";
         } else if (difficulty.equals("Medium")) {
-            this.numOfWords = 897;
             this.fileName = "data/WordsForMedium";
         } else {
-            this.numOfWords = 1310;
             this.fileName = "data/WordsForHard";
         }
-        this.dictionary = new String[this.numOfWords];
-        this.size = 0;
+        this.dictionary = new ArrayList<>();
         try {
             this.input = new Scanner(new File(fileName));
         } catch (Exception e) {
             e.printStackTrace();
         }
         while (this.input.hasNext()) {
-            this.dictionary[this.size] = this.input.next();
-            this.size++;
+            this.dictionary.add(this.input.next());
             this.input.nextLine();
         }
     }
 
-    public String[] getDictionary() {
+    public ArrayList<String> getDictionary() {
         return dictionary;
     }
 
-    public int getSize() {
-        return size;
-    }
-
     public int getNumOfWords() {
-        return numOfWords;
+        return this.dictionary.size();
     }
 
     public String getFileName() {
         return fileName;
+    }
+
+    public boolean isEmpty() {
+        return this.dictionary.size() == 0;
+    }
+
+    public boolean contains(String word) {
+        return this.dictionary.contains(word);
+    }
+
+    public String getRandomAndRemove() {
+        return this.dictionary.remove(this.randomNumberGenerator());
+    }
+
+    private int randomNumberGenerator() {
+        //Min + (int)(Math.random() * ((Max - Min) + 1)) gives number [Min, Max]
+        // Min = 0, Max = dictionary.size() - 1
+        return (int) (Math.random() * ((this.dictionary.size() - 1) + 1));
     }
 }
