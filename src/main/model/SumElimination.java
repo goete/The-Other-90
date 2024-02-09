@@ -25,10 +25,8 @@ public class SumElimination extends Game {
         if (difficulty.equals("Easy")) {
             this.lowerBound = 1;
             this.upperBound = 100;
-            this.lowerNumberOfGiven = 3;
-            this.upperNumberOfGiven = 3;
-            this.lowerNumberToGetRidOf = 1;
-            this.upperNumberToGetRidOf = 1;
+            this.lowerNumberOfGiven = this.upperNumberOfGiven = 3;
+            this.lowerNumberToGetRidOf = this.upperNumberToGetRidOf = 1;
         } else if (difficulty.equals("Medium")) {
             this.lowerBound = 1;
             this.upperBound = 1000;
@@ -84,15 +82,18 @@ public class SumElimination extends Game {
 
     // REQUIRES: Collection.size() >= 1
     public String listOutTheNumbers(ArrayList<Integer> collection) {
-        String hold = null;
+        StringBuilder hold = null;
         for (int n : collection) {
             if (hold == null) {
-                hold = "" + n;
+                hold = new StringBuilder(String.valueOf(n));
             } else {
-                hold += ", " + n;
+                hold.append(", ").append(n);
             }
         }
-        return hold;
+        if (hold == null) {
+            throw new AssertionError();
+        }
+        return hold.toString();
     }
 
     // REQUIRES: String with numbers separated by space(s) (has guard against however)
@@ -105,7 +106,7 @@ public class SumElimination extends Game {
         }
     }
 
-    // REQUIRES: string array where each position is a integer
+    // REQUIRES: string array where each position is an integer
     // EFFECTS: returns the sum of the array terms
     private int addAnswer(String[] splitBySpace) {
         int hold = 0;
