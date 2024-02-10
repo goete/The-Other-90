@@ -19,8 +19,7 @@ public class SumElimination extends Game {
     // REQUIRES: difficulty is one of Easy, Medium, Hard
     public SumElimination(String difficulty) {
         super(difficulty, "Sum Elimination");
-        this.numbers = new ArrayList<>();
-        this.target = 0;
+        resetGame();
         if (difficulty.equals("Easy")) {
             this.lowerBound = 1;
             this.upperBound = 100;
@@ -43,6 +42,10 @@ public class SumElimination extends Game {
         }
     }
 
+    public void resetGame() {
+        this.numbers = new ArrayList<>();
+        this.target = 0;
+    }
 
     // MODIFIES: this
     // EFFECTS: Returns the list of the numbers for the round shuffled
@@ -57,6 +60,7 @@ public class SumElimination extends Game {
             this.target += this.numbers.get(n);
         }
         Collections.shuffle(numbers);
+        super.resetTime();
         return this.numbers;
     }
 
