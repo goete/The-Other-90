@@ -19,7 +19,7 @@ public class SumElimination extends Game {
 
     // REQUIRES: difficulty is one of Easy, Medium, Hard
     public SumElimination(String difficulty) {
-        super(difficulty);
+        super(difficulty, "Sum Elimination");
         this.numbers = new ArrayList<>();
         this.target = 0;
         if (difficulty.equals("Easy")) {
@@ -72,22 +72,21 @@ public class SumElimination extends Game {
         this.target = target;
     }
 
+    // EFFECTS: returns if the given number matches the target
     public boolean isSumCorrect(int answerSum) {
         return (this.target == answerSum);
     }
 
     // REQUIRES: Collection.size() >= 1
+    // EFFECTS: returns the
     public String listOutTheNumbers(ArrayList<Integer> collection) {
-        StringBuilder hold = null;
+        StringBuilder hold = new StringBuilder();
         for (int n : collection) {
-            if (hold == null) {
-                hold = new StringBuilder(String.valueOf(n));
+            if (hold.toString().isEmpty()) {
+                hold.append(n);
             } else {
                 hold.append(", ").append(n);
             }
-        }
-        if (hold == null) {
-            throw new AssertionError();
         }
         return hold.toString();
     }
