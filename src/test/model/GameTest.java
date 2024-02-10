@@ -3,8 +3,7 @@ package model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class GameTest {
     Game easyWordRecollection;
@@ -17,13 +16,13 @@ public class GameTest {
 
     @BeforeEach
     public void beforeEach() {
-        this.easyWordRecollection = new Game("Easy", "Word Recollection");
-        this.mediumWordRecollection = new Game("Medium", "Word Recollection");
-        this.hardWordRecollection = new Game("Hard", "Word Recollection");
+        this.easyWordRecollection = new WordRecollection("Easy");
+        this.mediumWordRecollection = new WordRecollection("Medium");
+        this.hardWordRecollection = new WordRecollection("Hard");
 
-        this.easySumElimination = new Game("Easy", "Sum Elimination");
-        this.mediumSumElimination = new Game("Medium", "Sum Elimination");
-        this.hardSumElimination = new Game("Hard", "Sum Elimination");
+        this.easySumElimination = new SumElimination("Easy");
+        this.mediumSumElimination = new SumElimination("Medium");
+        this.hardSumElimination = new SumElimination("Hard");
 
     }
 
@@ -61,5 +60,25 @@ public class GameTest {
         assertEquals("Sum Elimination", this.mediumSumElimination.getName());
         assertEquals("Sum Elimination", this.easySumElimination.getName());
 
+    }
+
+    @Test
+    public void timingTest() {
+        //The timing won't be exactly equal due to runtimes, however they should be to a certain degree
+        assertEquals(Math.round((float) System.currentTimeMillis() / 100), Math.round((float) this.easyWordRecollection.getTimeThatRoundStarted() / 100));
+    }
+
+    @Test
+    public void roundTimeTests() {
+        assertEquals(20, this.easyWordRecollection.getRoundTimeInSeconds());
+        assertEquals(15, this.mediumWordRecollection.getRoundTimeInSeconds());
+        assertEquals(10, this.hardSumElimination.getRoundTimeInSeconds());
+    }
+
+    @Test
+    public void resettingTimerTests() {
+        long holdingFirst = this.easyWordRecollection.getTimeThatRoundStarted();
+        this.easyWordRecollection.resetTime();
+        assertNotEquals(this.easyWordRecollection.getTimeThatRoundStarted(), holdingFirst);
     }
 }

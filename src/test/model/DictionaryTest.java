@@ -72,6 +72,13 @@ public class DictionaryTest {
     }
 
     @Test
+    public void gettingWordAndChecking() {
+        assertFalse(this.dictionaryEasy.contains(this.dictionaryEasy.getRandomAndRemove()));
+        assertFalse(this.dictionaryMedium.contains(this.dictionaryMedium.getRandomAndRemove()));
+        assertFalse(this.dictionaryHard.contains(this.dictionaryHard.getRandomAndRemove()));
+    }
+
+    @Test
     public void testingGettingWords() {
         assertFalse(this.dictionaryEasy.contains(this.dictionaryEasy.getRandomAndRemove()));
         assertTrue(this.dictionaryEasy2.contains(this.dictionaryEasy.getRandomAndRemove()));
