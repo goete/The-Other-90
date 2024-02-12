@@ -32,11 +32,11 @@ public class Leaderboards {
     // EFFECTS: adds the player to the correct difficulty
     private void sumEliminationAdding(Player player, Game game) {
         if (game.getDifficulty().equals("Easy")) {
-            this.sumEliminationEasy.addToLeaderboard(player);
+            this.sumEliminationEasy.addToLeaderboard(player, game);
         } else if (game.getDifficulty().equals("Medium")) {
-            this.sumEliminationMedium.addToLeaderboard(player);
+            this.sumEliminationMedium.addToLeaderboard(player, game);
         } else {
-            this.sumEliminationHard.addToLeaderboard(player);
+            this.sumEliminationHard.addToLeaderboard(player, game);
         }
     }
 
@@ -45,11 +45,11 @@ public class Leaderboards {
     // EFFECTS: adds the player to the correct difficulty
     private void wordRecollectionAdding(Player player, Game game) {
         if (game.getDifficulty().equals("Easy")) {
-            this.wordRecollectionEasy.addToLeaderboard(player);
+            this.wordRecollectionEasy.addToLeaderboard(player, game);
         } else if (game.getDifficulty().equals("Medium")) {
-            this.wordRecollectionMedium.addToLeaderboard(player);
+            this.wordRecollectionMedium.addToLeaderboard(player, game);
         } else {
-            this.wordRecollectionHard.addToLeaderboard(player);
+            this.wordRecollectionHard.addToLeaderboard(player, game);
         }
     }
 
