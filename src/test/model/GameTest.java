@@ -78,6 +78,11 @@ public class GameTest {
     @Test
     public void resettingTimerTests() {
         long holdingFirst = this.easyWordRecollection.getTimeThatRoundStarted();
+        try {
+            Thread.sleep(10);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         this.easyWordRecollection.resetTime();
         assertNotEquals(this.easyWordRecollection.getTimeThatRoundStarted(), holdingFirst);
     }
