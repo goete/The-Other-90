@@ -17,6 +17,7 @@ public class SumElimination extends Game {
     private int target;
 
     // REQUIRES: difficulty is one of Easy, Medium, Hard
+    // EFFECTS: sets the bounds to the correct values based on difficulty
     public SumElimination(String difficulty) {
         super(difficulty, "Sum Elimination");
         resetGame();
@@ -42,13 +43,15 @@ public class SumElimination extends Game {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: resets the values to the starting values
     public void resetGame() {
         this.numbers = new ArrayList<>();
         this.target = 0;
     }
 
     // MODIFIES: this
-    // EFFECTS: Returns the list of the numbers for the round shuffled
+    // EFFECTS: Returns the list of the numbers for the round shuffled and resets the time for round start
     public ArrayList<Integer> getNextNumbers() {
         //Min + (int)(Math.random() * ((Max - Min) + 1)) gives number [Min, Max]
         this.numbers = new ArrayList<>();
