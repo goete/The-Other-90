@@ -86,4 +86,12 @@ public class GameTest {
         this.easyWordRecollection.resetTime();
         assertNotEquals(this.easyWordRecollection.getTimeThatRoundStarted(), holdingFirst);
     }
+
+    @Test
+    public void roundOverTests() throws InterruptedException {
+        this.hardWordRecollection.resetTime();
+        assertFalse(this.hardWordRecollection.isRoundOver());
+        Thread.sleep(10000);
+        assertTrue(this.hardWordRecollection.isRoundOver());
+    }
 }

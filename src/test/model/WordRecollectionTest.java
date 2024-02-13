@@ -3,8 +3,9 @@ package model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import java.util.ArrayList;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class WordRecollectionTest {
     WordRecollection gameEasy;
@@ -58,6 +59,44 @@ public class WordRecollectionTest {
         assertTrue(gameEasy.getWordsFound().contains(hold) | gameEasy.getWordsFound().contains(hold));
         hold = gameEasy.getNextWord();
         assertTrue(gameEasy.getWordsFound().contains(hold) | gameEasy.getWordsFound().contains(hold));
+
+    }
+
+    @Test
+    public void testingLastWord() {
+        ArrayList<String> holding = new ArrayList<>();
+        String store;
+        holding.add(gameEasy.getNextWord());
+        assertFalse(gameEasy.isSeenLastWordBefore());
+        holding.add(gameEasy.getNextWord());
+        assertFalse(gameEasy.isSeenLastWordBefore());
+        holding.add(gameEasy.getNextWord());
+        assertFalse(gameEasy.isSeenLastWordBefore());
+        // since random, test a lot of times to make sure it behaves
+        for (int i = 0; i < 100; i++) {
+            store = gameEasy.getNextWord();
+            assertEquals(holding.contains(store), gameEasy.isSeenLastWordBefore());
+            holding.add(store);
+        }
+        assertFalse(gameEasy.getWordsFound().isEmpty());
+    }
+
+    @Test
+    public void resettingGame() {
+        ArrayList<String> holding = new ArrayList<>();
+        String store;
+        // emptying dictionary
+        for (int i = 0; i < 100; i++) {
+            store = gameEasy.getNextWord();
+            assertEquals(holding.contains(store), gameEasy.isSeenLastWordBefore());
+            holding.add(store);
+        }
+        assertFalse(gameEasy.getWordsFound().isEmpty());
+        int size = this.gameEasy.getDictionary().getNumOfWords();
+        gameEasy.resetGame();
+        assertTrue(gameEasy.getWordsFound().isEmpty());
+        assertNotEquals(this.gameEasy.getDictionary().getNumOfWords(), size);
+
 
     }
 }

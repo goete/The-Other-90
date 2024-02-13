@@ -33,13 +33,13 @@ public class WordRecollection extends Game {
     // EFFECTS: returns the next word for the player to determine
     public String getNextWord() {
         if (this.wordsFound.size() >= 3 && super.randomNumberGenerator(0, 100) >= 30) {
-            this.seenLastWordBefore = false;
+            this.seenLastWordBefore = true;
             super.resetTime();
             return this.wordsFound.get(super.randomNumberGenerator(0, this.wordsFound.size() - 1));
         } else {
             this.mostRecentNewWord = this.dictionary.getRandomAndRemove();
             this.wordsFound.add(this.mostRecentNewWord);
-            this.seenLastWordBefore = true;
+            this.seenLastWordBefore = false;
             super.resetTime();
             return this.mostRecentNewWord;
         }
@@ -47,6 +47,10 @@ public class WordRecollection extends Game {
 
     public boolean isSeenLastWordBefore() {
         return seenLastWordBefore;
+    }
+
+    public Dictionary getDictionary() {
+        return this.dictionary;
     }
 
 
