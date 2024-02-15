@@ -26,8 +26,8 @@ public class SumEliminationTest {
         assertEquals(100, this.sumEasy.getUpperBound());
         assertEquals(3, this.sumEasy.getLowerNumberOfGiven());
         assertEquals(3, this.sumEasy.getUpperNumberOfGiven());
-        assertEquals(1, this.sumEasy.getLowerNumberToGetRidOf());
-        assertEquals(1, this.sumEasy.getUpperNumberToGetRidOf());
+        assertEquals(1, this.sumEasy.getLowerNumberToKeep());
+        assertEquals(2, this.sumEasy.getUpperNumberToKeep());
         assertEquals(0, this.sumEasy.getTarget());
 
     }
@@ -39,8 +39,8 @@ public class SumEliminationTest {
         assertEquals(1000, this.sumMed.getUpperBound());
         assertEquals(4, this.sumMed.getLowerNumberOfGiven());
         assertEquals(5, this.sumMed.getUpperNumberOfGiven());
-        assertEquals(1, this.sumMed.getLowerNumberToGetRidOf());
-        assertEquals(2, this.sumMed.getUpperNumberToGetRidOf());
+        assertEquals(1, this.sumMed.getLowerNumberToKeep());
+        assertEquals(4, this.sumMed.getUpperNumberToKeep());
         assertEquals(0, this.sumMed.getTarget());
 
     }
@@ -52,8 +52,8 @@ public class SumEliminationTest {
         assertEquals(1000, this.sumHard.getUpperBound());
         assertEquals(4, this.sumHard.getLowerNumberOfGiven());
         assertEquals(6, this.sumHard.getUpperNumberOfGiven());
-        assertEquals(0, this.sumHard.getLowerNumberToGetRidOf());
-        assertEquals(4, this.sumHard.getUpperNumberToGetRidOf());
+        assertEquals(0, this.sumHard.getLowerNumberToKeep());
+        assertEquals(4, this.sumHard.getUpperNumberToKeep());
         assertEquals(0, this.sumHard.getTarget());
 
     }
@@ -74,18 +74,18 @@ public class SumEliminationTest {
         helper.add(43);
         helper.add(4);
         helper.add(5);
-        assertEquals("1, 2, 3, 43, 4, 5", this.sumEasy.listOutTheNumbers(helper));
+        assertEquals("1,2,3,43,4,5", this.sumEasy.listOutTheNumbers(helper));
     }
 
     @Test
     public void correctAnswerTest() {
         this.sumEasy.setTarget(10);
-        assertTrue(this.sumEasy.isAnswerCorrect("1 4 5"));
-        assertTrue(this.sumEasy.isAnswerCorrect("1 4 3 2"));
-        assertFalse(this.sumEasy.isAnswerCorrect("3  4"));
+        assertTrue(this.sumEasy.isAnswerCorrect("1,4,5"));
+        assertTrue(this.sumEasy.isAnswerCorrect("1,4,3,2"));
+        assertFalse(this.sumEasy.isAnswerCorrect("3,4"));
 
         // checking to make sure the guard is in place and works
-        assertFalse(this.sumEasy.isAnswerCorrect("a 3 2 3"));
+        assertFalse(this.sumEasy.isAnswerCorrect("a,3,2,3"));
     }
 
     @Test

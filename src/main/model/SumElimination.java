@@ -93,7 +93,7 @@ public class SumElimination extends Game {
             if (hold.toString().isEmpty()) {
                 hold.append(n);
             } else {
-                hold.append(", ").append(n);
+                hold.append(",").append(n);
             }
         }
         return hold.toString();

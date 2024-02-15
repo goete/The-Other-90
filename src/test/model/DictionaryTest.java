@@ -32,8 +32,8 @@ public class DictionaryTest {
     }
 
     @Test()
-    public void errorThrowingWorks() {
-
+    public void changingSize() {
+        int originalSize = this.dictionaryEasy.getNumOfWords();
     }
 
     @Test
@@ -86,6 +86,19 @@ public class DictionaryTest {
         assertTrue(this.dictionaryMedium2.contains(this.dictionaryMedium.getRandomAndRemove()));
         assertFalse(this.dictionaryHard.contains(this.dictionaryHard.getRandomAndRemove()));
         assertTrue(this.dictionaryHard2.contains(this.dictionaryHard.getRandomAndRemove()));
+    }
+
+    @Test
+    public void boundRandomTests() {
+        assertTrue(this.dictionaryEasy.randomNumberGenerator() >= 0);
+        assertTrue(this.dictionaryEasy.randomNumberGenerator() < this.dictionaryEasy.getNumOfWords());
+
+        assertTrue(this.dictionaryMedium.randomNumberGenerator() >= 0);
+        assertTrue(this.dictionaryMedium.randomNumberGenerator() < this.dictionaryMedium.getNumOfWords());
+
+        assertTrue(this.dictionaryHard.randomNumberGenerator() >= 0);
+        assertTrue(this.dictionaryHard.randomNumberGenerator() < this.dictionaryHard.getNumOfWords());
+
     }
 
 

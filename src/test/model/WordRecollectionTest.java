@@ -85,6 +85,7 @@ public class WordRecollectionTest {
     public void resettingGame() {
         ArrayList<String> holding = new ArrayList<>();
         String store;
+
         // emptying dictionary
         for (int i = 0; i < 100; i++) {
             store = gameEasy.getNextWord();
