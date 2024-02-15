@@ -3,7 +3,8 @@
 ## Maximize Your Mentality
 
 This game contains of two game modes, each with three difficulties:
-**Sum Elimination**
+
+        **Sum Elimination**
 
 - Easy
     - Gives 3 numbers and the player must eliminate 1 to achieve the sum
