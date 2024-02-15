@@ -14,7 +14,7 @@ This game contains of two game modes, each with three difficulties:
     - Gives 4-6 numbers and the player must eliminate 0-4
     - Also includes negatives
 
-      **Word Recollection**
+**Word Recollection**
 
 - Easy
     - Common words
