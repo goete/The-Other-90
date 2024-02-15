@@ -80,8 +80,11 @@ public class SumEliminationTest {
     @Test
     public void correctAnswerTest() {
         this.sumEasy.setTarget(10);
+        this.sumEasy.getNumbers().add(10);
+        this.sumEasy.getNumbers().add(5);
         assertTrue(this.sumEasy.isAnswerCorrect("1,4,5"));
         assertTrue(this.sumEasy.isAnswerCorrect("1,4,3,2"));
+        this.sumEasy.getNumbers().add(5);
         assertFalse(this.sumEasy.isAnswerCorrect("3,4"));
 
         // checking to make sure the guard is in place and works

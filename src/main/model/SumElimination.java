@@ -103,6 +103,7 @@ public class SumElimination extends Game {
     // EFFECTS: returns whether the answer was correct
     public boolean isAnswerCorrect(String answer) {
         if (answer.matches("[,|\\d|-]+")) {
+
             return this.target == addAnswer(answer.split(","));
         } else {
             return false;
@@ -146,5 +147,9 @@ public class SumElimination extends Game {
 
     public int getUpperNumberToKeep() {
         return upperNumberToKeep;
+    }
+
+    public ArrayList<Integer> getNumbers() {
+        return numbers;
     }
 }
