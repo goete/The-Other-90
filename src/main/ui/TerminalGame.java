@@ -2,6 +2,8 @@ package ui;
 
 import model.*;
 
+import java.io.FileNotFoundException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -22,7 +24,8 @@ public class TerminalGame {
     private String playerAnswer;
 
 
-    public TerminalGame() {
+    public TerminalGame() throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException,
+            IllegalAccessException, FileNotFoundException {
         scanner = new Scanner(System.in);
         gameContinues = true;
         leaderboard = new Leaderboards();
@@ -34,7 +37,7 @@ public class TerminalGame {
 
     }
 
-    private void gameMechanics() {
+    private void gameMechanics() throws InvocationTargetException, IllegalAccessException, FileNotFoundException {
         System.out.println("What is your player name?");
         player = new Player(scanner.next());
         while (gameContinues) {
@@ -57,7 +60,8 @@ public class TerminalGame {
         }
     }
 
-    private void difficultySelectingAndContinuing() {
+    private void difficultySelectingAndContinuing() throws InvocationTargetException, IllegalAccessException,
+            FileNotFoundException {
         System.out.println("Type Easy, Medium, or Hard to choose your difficulty");
         nextInput = scanner.next();
         if (nextInput.equals("Easy")) {
@@ -77,7 +81,7 @@ public class TerminalGame {
     private void highScoreViewing() {
     }
 
-    private void handleGameStarting() {
+    private void handleGameStarting() throws InvocationTargetException, IllegalAccessException, FileNotFoundException {
         currentGame = true;
         System.out.println(gameMode);
         if (gameMode.contains("Word Recollection")) {
@@ -87,7 +91,7 @@ public class TerminalGame {
         }
     }
 
-    private void sumEliminationMechanics() {
+    private void sumEliminationMechanics() throws InvocationTargetException, IllegalAccessException {
         System.out.println("You will be faced with a number followed by a list of numbers");
         System.out.println("Write out the list of numbers "
                 + "that you need to eliminate, separated by a comma to get the top number");
@@ -109,7 +113,7 @@ public class TerminalGame {
         } // else we continue
     }
 
-    private void sumEliminationGameInProgress() {
+    private void sumEliminationGameInProgress() throws InvocationTargetException, IllegalAccessException {
         this.collectionOfNumbers = sumEliminationGame.getNextNumbers();
         System.out.println(sumEliminationGame.getTarget());
         System.out.println(sumEliminationGame.listOutTheNumbers(this.collectionOfNumbers));
@@ -126,7 +130,8 @@ public class TerminalGame {
         }
     }
 
-    private void wordRecollectionMechanics() {
+    private void wordRecollectionMechanics() throws InvocationTargetException, IllegalAccessException,
+            FileNotFoundException {
         System.out.println("You will be given a word, you need to type "
                 + "Yes if you have seen the word earlier in the round");
         System.out.println("Otherwise, type No for having not seen it");
@@ -142,7 +147,7 @@ public class TerminalGame {
         }
     }
 
-    private void wordRecollectionGameInProgress() {
+    private void wordRecollectionGameInProgress() throws InvocationTargetException, IllegalAccessException {
         System.out.println("The next word is: " + this.wordRecollectionGame.getNextWord());
         System.out.println("Have you seen this yet?");
 

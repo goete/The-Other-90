@@ -1,5 +1,6 @@
 package model;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 public class WordRecollection extends Game {
@@ -11,7 +12,7 @@ public class WordRecollection extends Game {
     // REQUIRES: difficulty is one of Easy, Medium, Hard
     // MODIFIES: this
     // EFFECTS: makes a WordRecollection
-    public WordRecollection(String difficulty) {
+    public WordRecollection(String difficulty) throws FileNotFoundException {
         super(difficulty, "Word Recollection");
         this.dictionary = new Dictionary(difficulty);
         this.wordsFound = new ArrayList<>();
@@ -20,7 +21,7 @@ public class WordRecollection extends Game {
 
     // MODIFIES: this
     // EFFECTS: resets all the needed parts
-    public void resetGame() {
+    public void resetGame() throws FileNotFoundException {
         this.dictionary = new Dictionary(difficulty);
         this.wordsFound = new ArrayList<>();
         this.mostRecentNewWord = null;

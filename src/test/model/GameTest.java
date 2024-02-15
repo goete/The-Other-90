@@ -3,6 +3,8 @@ package model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.io.FileNotFoundException;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class GameTest {
@@ -15,7 +17,7 @@ public class GameTest {
     Game hardSumElimination;
 
     @BeforeEach
-    public void beforeEach() {
+    public void beforeEach() throws FileNotFoundException {
         this.easyWordRecollection = new WordRecollection("Easy");
         this.mediumWordRecollection = new WordRecollection("Medium");
         this.hardWordRecollection = new WordRecollection("Hard");

@@ -3,6 +3,8 @@ package model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.io.FileNotFoundException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -19,7 +21,7 @@ public class LeaderboardTest {
 
 
     @BeforeEach
-    public void beforeEach() {
+    public void beforeEach() throws ClassNotFoundException, NoSuchMethodException, FileNotFoundException {
         this.sumEliminationEasy = new Leaderboard("Sum Elimination Easy");
         this.sumEliminationMedium = new Leaderboard("Sum Elimination Medium");
         this.wordRecollectionHard = new Leaderboard("Word Recollection Hard");
@@ -42,7 +44,7 @@ public class LeaderboardTest {
     }
 
     @Test
-    public void getSpecificPlayersHighScoreTest() {
+    public void getSpecificPlayersHighScoreTest() throws InvocationTargetException, IllegalAccessException {
         Player player = new Player("john");
         player.setSumEliminationEasyHighScore(12);
         assertEquals(12, this.sumEliminationEasy.getSpecificPlayersHighScore(player));
@@ -55,7 +57,7 @@ public class LeaderboardTest {
     }
 
     @Test
-    public void addingToLeaderboardTest() {
+    public void addingToLeaderboardTest() throws InvocationTargetException, IllegalAccessException {
         Player player1 = new Player("one");
         Player player2 = new Player("two");
 
@@ -72,7 +74,7 @@ public class LeaderboardTest {
     }
 
     @Test
-    public void gettingTopPlayers() {
+    public void gettingTopPlayers() throws InvocationTargetException, IllegalAccessException {
         Player player1 = new Player("one");
         Player player2 = new Player("two");
         Player player3 = new Player("three");

@@ -1,5 +1,7 @@
 package model;
 
+import java.io.FileNotFoundException;
+
 public abstract class Game {
     protected final String difficulty;
     protected int currentScore;
@@ -69,5 +71,5 @@ public abstract class Game {
         return name;
     }
 
-    public abstract void resetGame();
+    public abstract void resetGame() throws FileNotFoundException;
 }

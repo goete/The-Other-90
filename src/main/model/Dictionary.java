@@ -1,6 +1,7 @@
 package model;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -9,7 +10,7 @@ public class Dictionary {
     private final String fileName;
 
     // REQUIRES: difficulty is one of Easy, Medium, Hard
-    public Dictionary(String difficulty) {
+    public Dictionary(String difficulty) throws FileNotFoundException {
         // While this could be written in less lines, this adds a guard to the Scanner
         if (difficulty.equals("Easy")) {
             this.fileName = "data/WordsForEasy";
@@ -19,12 +20,8 @@ public class Dictionary {
             this.fileName = "data/WordsForHard";
         }
         this.dictionary = new ArrayList<>();
-        Scanner input = null;
-        try {
-            input = new Scanner(new File(fileName));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        Scanner input = new Scanner(new File(fileName));
+
         // Works because files end with an empty line
         while (input.hasNext()) {
             this.dictionary.add(input.next());

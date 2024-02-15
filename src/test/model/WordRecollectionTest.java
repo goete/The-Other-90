@@ -3,6 +3,7 @@ package model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -14,7 +15,7 @@ public class WordRecollectionTest {
 
 
     @BeforeEach
-    public void beforeEach() {
+    public void beforeEach() throws FileNotFoundException {
         this.gameEasy = new WordRecollection("Easy");
         this.gameHard = new WordRecollection("Hard");
         this.gameMedium = new WordRecollection("Medium");
@@ -28,7 +29,7 @@ public class WordRecollectionTest {
     }
 
     @Test
-    public void wordsAreActuallyReal() {
+    public void wordsAreActuallyReal() throws FileNotFoundException {
         Dictionary dictionaryEasy = new Dictionary("Easy");
         Dictionary dictionaryMedium = new Dictionary("Medium");
         Dictionary dictionaryHard = new Dictionary("Hard");
@@ -82,7 +83,7 @@ public class WordRecollectionTest {
     }
 
     @Test
-    public void resettingGame() {
+    public void resettingGame() throws FileNotFoundException {
         ArrayList<String> holding = new ArrayList<>();
         String store;
 

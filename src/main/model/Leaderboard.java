@@ -16,19 +16,16 @@ public class Leaderboard {
 
     // REQUIRES: name is [Sum Elimination|Word Recollection] [Easy|Medium|Hard]
     // EFFECTS: makes a leaderboard for given game and difficulty
-    public Leaderboard(String name) {
+    public Leaderboard(String name) throws ClassNotFoundException, NoSuchMethodException {
         this.name = name;
         this.board = new ArrayList<>();
         this.storage = new ArrayList<>();
         this.gettingMethodNameAsString = this.convertToCorrectNameGetting();
         this.settingMethodNameAsString = this.convertToCorrectNameSetting();
 
-        try {
-            this.gettingMethod = Class.forName("model.Player").getMethod(gettingMethodNameAsString);
-            this.settingMethod = Class.forName("model.Player").getMethod(settingMethodNameAsString, int.class);
-        } catch (NoSuchMethodException | ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
+        this.gettingMethod = Class.forName("model.Player").getMethod(gettingMethodNameAsString);
+        this.settingMethod = Class.forName("model.Player").getMethod(settingMethodNameAsString, int.class);
+
 
     }
 
@@ -51,27 +48,22 @@ public class Leaderboard {
     // EFFECTS: adds the given player to the leaderboard if they
     //          completed the game for the first time
     //          also updates the players high score for that game
-    public void addToLeaderboard(Player player, Game game) {
+    public void addToLeaderboard(Player player, Game game) throws InvocationTargetException, IllegalAccessException {
         if (!board.contains(player)) {
             board.add(player);
         }
-        try {
-            this.settingMethod.invoke(player, game.getCurrentScore());
-        } catch (IllegalAccessException | InvocationTargetException e) {
-            throw new RuntimeException(e);
-        }
+
+        this.settingMethod.invoke(player, game.getCurrentScore());
+
 
     }
 
     // EFFECTS: returns the high score of the player for the correct mode
-    public int getSpecificPlayersHighScore(Player player) {
+    public int getSpecificPlayersHighScore(Player player) throws InvocationTargetException, IllegalAccessException {
         // this is solely for testing purposes
         // this would be very useless to actually use, outside of tests
-        try {
-            return (int) this.gettingMethod.invoke(player);
-        } catch (IllegalAccessException | InvocationTargetException e) {
-            throw new RuntimeException(e);
-        }
+        return (int) this.gettingMethod.invoke(player);
+
 
     }
 
@@ -85,7 +77,7 @@ public class Leaderboard {
     // MODIFIES: this.storage
     // EFFECTS: returns a list of the top n players, or all players if n > board.size()
     //          in order such that the highest score is at index 0
-    public ArrayList<Player> getTopNPlayers(int n) {
+    public ArrayList<Player> getTopNPlayers(int n) throws InvocationTargetException, IllegalAccessException {
         this.storage = new ArrayList<>();
         if (n > this.board.size()) {
             return this.getNPlayersRecursion(this.board.size(), (ArrayList<Player>) this.board.clone(), this.storage);
@@ -98,7 +90,8 @@ public class Leaderboard {
     }
 
     private ArrayList<Player> getNPlayersRecursion(
-            int n, ArrayList<Player> toGoThrough, ArrayList<Player> correctOrder) {
+            int n, ArrayList<Player> toGoThrough, ArrayList<Player> correctOrder) throws InvocationTargetException,
+            IllegalAccessException {
         Player hold = toGoThrough.get(0);
         for (Player player : toGoThrough) {
             if (this.getSpecificPlayersHighScore(player) > this.getSpecificPlayersHighScore(hold)) {

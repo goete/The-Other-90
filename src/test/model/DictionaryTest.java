@@ -3,6 +3,8 @@ package model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.io.FileNotFoundException;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class DictionaryTest {
@@ -14,7 +16,7 @@ public class DictionaryTest {
     Dictionary dictionaryHard2;
 
     @BeforeEach
-    public void beforeEach() {
+    public void beforeEach() throws FileNotFoundException {
         this.dictionaryEasy = new Dictionary("Easy");
         this.dictionaryMedium = new Dictionary("Medium");
         this.dictionaryHard = new Dictionary("Hard");

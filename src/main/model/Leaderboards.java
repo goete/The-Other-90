@@ -1,5 +1,7 @@
 package model;
 
+import java.lang.reflect.InvocationTargetException;
+
 public class Leaderboards {
     private Leaderboard sumEliminationEasy;
     private Leaderboard sumEliminationMedium;
@@ -9,7 +11,7 @@ public class Leaderboards {
     private Leaderboard wordRecollectionHard;
 
     // EFFECTS: initializes all the leaderboards
-    public Leaderboards() {
+    public Leaderboards() throws ClassNotFoundException, NoSuchMethodException {
         this.sumEliminationEasy = new Leaderboard("Sum Elimination Easy");
         this.sumEliminationMedium = new Leaderboard("Sum Elimination Medium");
         this.sumEliminationHard = new Leaderboard("Sum Elimination Hard");
@@ -20,7 +22,8 @@ public class Leaderboards {
 
     // MODIFIES: this
     // EFFECT: adds the player to the correct game
-    public void addPlayerToLeaderboard(Player player, Game game) {
+    public void addPlayerToLeaderboard(Player player, Game game) throws InvocationTargetException,
+            IllegalAccessException {
         if (game.getName().equals("Word Recollection")) {
             wordRecollectionAdding(player, game);
         } else {
@@ -30,7 +33,8 @@ public class Leaderboards {
 
     // MODIFIES: this
     // EFFECTS: adds the player to the correct difficulty
-    private void sumEliminationAdding(Player player, Game game) {
+    private void sumEliminationAdding(Player player, Game game) throws InvocationTargetException,
+            IllegalAccessException {
         if (game.getDifficulty().equals("Easy")) {
             this.sumEliminationEasy.addToLeaderboard(player, game);
         } else if (game.getDifficulty().equals("Medium")) {
@@ -43,7 +47,8 @@ public class Leaderboards {
 
     // MODIFIES: this
     // EFFECTS: adds the player to the correct difficulty
-    private void wordRecollectionAdding(Player player, Game game) {
+    private void wordRecollectionAdding(Player player, Game game) throws InvocationTargetException,
+            IllegalAccessException {
         if (game.getDifficulty().equals("Easy")) {
             this.wordRecollectionEasy.addToLeaderboard(player, game);
         } else if (game.getDifficulty().equals("Medium")) {

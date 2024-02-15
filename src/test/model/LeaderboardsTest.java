@@ -3,6 +3,9 @@ package model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.io.FileNotFoundException;
+import java.lang.reflect.InvocationTargetException;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class LeaderboardsTest {
@@ -23,7 +26,7 @@ public class LeaderboardsTest {
     Player player2;
 
     @BeforeEach
-    public void beforeEach() {
+    public void beforeEach() throws ClassNotFoundException, NoSuchMethodException, FileNotFoundException {
         this.leaderboards = new Leaderboards();
         this.wordRecollectionEasy = new WordRecollection("Easy");
         this.wordRecollectionMedium = new WordRecollection("Medium");
@@ -47,7 +50,7 @@ public class LeaderboardsTest {
     }
 
     @Test
-    public void playerAdding() {
+    public void playerAdding() throws InvocationTargetException, IllegalAccessException {
         this.leaderboards.addPlayerToLeaderboard(player1, this.sumEliminationMedium);
         assertEquals(player1, this.sumEliminationMediumBoard.getTopNPlayers(1).get(0));
         this.leaderboards.addPlayerToLeaderboard(player1, this.sumEliminationEasy);
