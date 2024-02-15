@@ -23,7 +23,7 @@ public class SumEliminationTest {
     public void setUpEasy() {
         assertEquals("Easy", this.sumEasy.getDifficulty());
         assertEquals(1, this.sumEasy.getLowerBound());
-        assertEquals(100, this.sumEasy.getUpperBound());
+        assertEquals(20, this.sumEasy.getUpperBound());
         assertEquals(3, this.sumEasy.getLowerNumberOfGiven());
         assertEquals(3, this.sumEasy.getUpperNumberOfGiven());
         assertEquals(1, this.sumEasy.getLowerNumberToKeep());
@@ -36,7 +36,7 @@ public class SumEliminationTest {
     public void setUpMedium() {
         assertEquals("Medium", this.sumMed.getDifficulty());
         assertEquals(1, this.sumMed.getLowerBound());
-        assertEquals(1000, this.sumMed.getUpperBound());
+        assertEquals(100, this.sumMed.getUpperBound());
         assertEquals(4, this.sumMed.getLowerNumberOfGiven());
         assertEquals(5, this.sumMed.getUpperNumberOfGiven());
         assertEquals(1, this.sumMed.getLowerNumberToKeep());
@@ -48,8 +48,8 @@ public class SumEliminationTest {
     @Test
     public void setUpHard() {
         assertEquals("Hard", this.sumHard.getDifficulty());
-        assertEquals(-1000, this.sumHard.getLowerBound());
-        assertEquals(1000, this.sumHard.getUpperBound());
+        assertEquals(-100, this.sumHard.getLowerBound());
+        assertEquals(100, this.sumHard.getUpperBound());
         assertEquals(4, this.sumHard.getLowerNumberOfGiven());
         assertEquals(6, this.sumHard.getUpperNumberOfGiven());
         assertEquals(0, this.sumHard.getLowerNumberToKeep());
