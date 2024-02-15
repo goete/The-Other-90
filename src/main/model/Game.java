@@ -7,7 +7,6 @@ public abstract class Game {
     private final int roundTimeInSeconds;
     private long timeThatRoundStarted;
 
-    // THE TIMER YOU BUFFOON
 
     // REQUIRES: difficulty is one of Easy, Medium, Hard
     // MODIFIES: this

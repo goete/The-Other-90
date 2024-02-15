@@ -56,7 +56,7 @@ public class Dictionary {
         return this.dictionary.remove(this.randomNumberGenerator());
     }
 
-    private int randomNumberGenerator() {
+    public int randomNumberGenerator() {
         //Min + (int)(Math.random() * ((Max - Min) + 1)) gives number [Min, Max]
         // Min = 0, Max = dictionary.size() - 1
         return (int) (Math.random() * ((this.dictionary.size() - 1) + 1));

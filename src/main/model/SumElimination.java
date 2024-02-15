@@ -11,8 +11,8 @@ public class SumElimination extends Game {
     private final int upperBound;
     private final int upperNumberOfGiven;
     private final int lowerNumberOfGiven;
-    private final int lowerNumberToGetRidOf;
-    private final int upperNumberToGetRidOf;
+    private final int lowerNumberToKeep;
+    private final int upperNumberToKeep;
     private ArrayList<Integer> numbers;
     private int target;
 
@@ -25,21 +25,21 @@ public class SumElimination extends Game {
             this.lowerBound = 1;
             this.upperBound = 100;
             this.lowerNumberOfGiven = this.upperNumberOfGiven = 3;
-            this.lowerNumberToGetRidOf = this.upperNumberToGetRidOf = 1;
+            this.lowerNumberToKeep = 1;
+            this.upperNumberToKeep = 2;
         } else if (difficulty.equals("Medium")) {
             this.lowerBound = 1;
             this.upperBound = 1000;
             this.lowerNumberOfGiven = 4;
             this.upperNumberOfGiven = 5;
-            this.lowerNumberToGetRidOf = 1;
-            this.upperNumberToGetRidOf = 2;
+            this.lowerNumberToKeep = 1;
+            this.upperNumberToKeep = 4;
         } else {
             this.lowerBound = -1000;
             this.upperBound = 1000;
-            this.lowerNumberOfGiven = 4;
+            this.lowerNumberOfGiven = this.upperNumberToKeep = 4;
             this.upperNumberOfGiven = 6;
-            this.lowerNumberToGetRidOf = 0;
-            this.upperNumberToGetRidOf = 4;
+            this.lowerNumberToKeep = 0;
         }
     }
 
@@ -48,6 +48,7 @@ public class SumElimination extends Game {
     public void resetGame() {
         this.numbers = new ArrayList<>();
         this.target = 0;
+        super.resetTime();
     }
 
     // MODIFIES: this
@@ -59,7 +60,8 @@ public class SumElimination extends Game {
             this.numbers.add(super.randomNumberGenerator(this.lowerBound, this.upperBound));
 
         }
-        for (int n = 0; n < super.randomNumberGenerator(this.lowerNumberToGetRidOf, this.upperNumberToGetRidOf); n++) {
+        this.target = 0;
+        for (int n = 0; n < super.randomNumberGenerator(this.lowerNumberToKeep, this.upperNumberToKeep); n++) {
             this.target += this.numbers.get(n);
         }
         Collections.shuffle(numbers);
@@ -97,11 +99,11 @@ public class SumElimination extends Game {
         return hold.toString();
     }
 
-    // REQUIRES: String with numbers separated by space(s) (has guard against however)
+    // REQUIRES: String with numbers separated by comma (has guard against however)
     // EFFECTS: returns whether the answer was correct
     public boolean isAnswerCorrect(String answer) {
-        if (answer.matches("[\\d | \\s]+")) {
-            return this.target == addAnswer(answer.split("\\s+"));
+        if (answer.matches("[,|\\d|-]+")) {
+            return this.target == addAnswer(answer.split(","));
         } else {
             return false;
         }
@@ -109,10 +111,15 @@ public class SumElimination extends Game {
 
     // REQUIRES: string array where each position is an integer
     // EFFECTS: returns the sum of the array terms
-    private int addAnswer(String[] splitBySpace) {
+    private int addAnswer(String[] splitByComma) {
+        for (String s : splitByComma) {
+            if (this.numbers.contains(Integer.parseInt(s))) {
+                this.numbers.remove(Integer.valueOf(Integer.parseInt(s)));
+            }
+        }
         int hold = 0;
-        for (String s : splitBySpace) {
-            hold += Integer.parseInt(s);
+        for (int n : this.numbers) {
+            hold += n;
         }
         return hold;
     }
@@ -133,11 +140,11 @@ public class SumElimination extends Game {
         return lowerNumberOfGiven;
     }
 
-    public int getLowerNumberToGetRidOf() {
-        return lowerNumberToGetRidOf;
+    public int getLowerNumberToKeep() {
+        return lowerNumberToKeep;
     }
 
-    public int getUpperNumberToGetRidOf() {
-        return upperNumberToGetRidOf;
+    public int getUpperNumberToKeep() {
+        return upperNumberToKeep;
     }
 }

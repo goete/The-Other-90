@@ -50,6 +50,7 @@ public class Leaderboard {
     // MODIFIES: this
     // EFFECTS: adds the given player to the leaderboard if they
     //          completed the game for the first time
+    //          also updates the players high score for that game
     public void addToLeaderboard(Player player, Game game) {
         if (!board.contains(player)) {
             board.add(player);

@@ -18,10 +18,13 @@ public class WordRecollection extends Game {
         this.mostRecentNewWord = null;
     }
 
+    // MODIFIES: this
+    // EFFECTS: resets all the needed parts
     public void resetGame() {
         this.dictionary = new Dictionary(difficulty);
         this.wordsFound = new ArrayList<>();
         this.mostRecentNewWord = null;
+        super.resetTime();
     }
 
 
@@ -30,17 +33,16 @@ public class WordRecollection extends Game {
     }
 
     // MODIFIES: this
-    // EFFECTS: returns the next word for the player to determine
+    // EFFECTS: returns the next word for the player to determine and resets round timer
     public String getNextWord() {
-        if (this.wordsFound.size() >= 3 && super.randomNumberGenerator(0, 100) >= 30) {
+        super.resetTime();
+        if (this.wordsFound.size() >= 3 && super.randomNumberGenerator(0, 100) >= 85) { // Frequency: 15%
             this.seenLastWordBefore = true;
-            super.resetTime();
             return this.wordsFound.get(super.randomNumberGenerator(0, this.wordsFound.size() - 1));
         } else {
             this.mostRecentNewWord = this.dictionary.getRandomAndRemove();
             this.wordsFound.add(this.mostRecentNewWord);
             this.seenLastWordBefore = false;
-            super.resetTime();
             return this.mostRecentNewWord;
         }
     }
