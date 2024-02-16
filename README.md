@@ -44,6 +44,6 @@ Words for Word Recollection found on https://github.com/first20hours/google-1000
 4. As a user, I want to be able to have my high score separate from other people's by my name
 5. As a user, I want to be able to be able to actually play the games
 6. As a user, I want to be able to see the time I have for each turn
-7. As a user, I want to be able to see a leaderboard of the top scores and where I rank.
+7. As a user, I want to be able to see a leaderboard of the top scores.
 
 
