@@ -3,12 +3,12 @@ package model;
 import java.lang.reflect.InvocationTargetException;
 
 public class Leaderboards {
-    private Leaderboard sumEliminationEasy;
-    private Leaderboard sumEliminationMedium;
-    private Leaderboard sumEliminationHard;
-    private Leaderboard wordRecollectionEasy;
-    private Leaderboard wordRecollectionMedium;
-    private Leaderboard wordRecollectionHard;
+    private final Leaderboard sumEliminationEasy;
+    private final Leaderboard sumEliminationMedium;
+    private final Leaderboard sumEliminationHard;
+    private final Leaderboard wordRecollectionEasy;
+    private final Leaderboard wordRecollectionMedium;
+    private final Leaderboard wordRecollectionHard;
 
     // EFFECTS: initializes all the leaderboards
     public Leaderboards() throws ClassNotFoundException, NoSuchMethodException {

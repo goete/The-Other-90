@@ -5,13 +5,12 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 
 public class Leaderboard {
-    private String name;
-    private ArrayList<Player> board;
+    private final String name;
+    private final ArrayList<Player> board;
     private ArrayList<Player> storage;
     private final String gettingMethodNameAsString;
-    private final String settingMethodNameAsString;
-    private Method gettingMethod;
-    private Method settingMethod;
+    private final Method gettingMethod;
+    private final Method settingMethod;
 
 
     // REQUIRES: name is [Sum Elimination|Word Recollection] [Easy|Medium|Hard]
@@ -21,10 +20,9 @@ public class Leaderboard {
         this.board = new ArrayList<>();
         this.storage = new ArrayList<>();
         this.gettingMethodNameAsString = this.convertToCorrectNameGetting();
-        this.settingMethodNameAsString = this.convertToCorrectNameSetting();
 
         this.gettingMethod = Class.forName("model.Player").getMethod(gettingMethodNameAsString);
-        this.settingMethod = Class.forName("model.Player").getMethod(settingMethodNameAsString, int.class);
+        this.settingMethod = Class.forName("model.Player").getMethod(this.convertToCorrectNameSetting(), int.class);
 
 
     }

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Dictionary {
-    private ArrayList<String> dictionary;
+    private final ArrayList<String> dictionary;
     private final String fileName;
 
     // REQUIRES: difficulty is one of Easy, Medium, Hard
