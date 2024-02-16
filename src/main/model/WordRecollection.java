@@ -37,7 +37,8 @@ public class WordRecollection extends Game {
     // EFFECTS: returns the next word for the player to determine and resets round timer
     public String getNextWord() {
         super.resetTime();
-        if (this.wordsFound.size() >= 3 && super.randomNumberGenerator(0, 100) >= 85) { // Frequency: 15%
+        if (this.wordsFound.size() >= 3 && super.randomNumberGenerator(0, 100) >= 85
+                && !this.dictionary.isEmpty()) { // Frequency: 15%
             this.seenLastWordBefore = true;
             return this.wordsFound.get(super.randomNumberGenerator(0, this.wordsFound.size() - 1));
         } else {
