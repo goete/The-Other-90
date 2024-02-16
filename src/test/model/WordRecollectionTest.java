@@ -98,7 +98,17 @@ public class WordRecollectionTest {
         gameEasy.resetGame();
         assertTrue(gameEasy.getWordsFound().isEmpty());
         assertNotEquals(this.gameEasy.getDictionary().getNumOfWords(), size);
+    }
 
+    @Test
+    public void goThroughAllWords() {
+        while (!this.gameEasy.getDictionary().isEmpty()) {
+            this.gameEasy.getNextWord();
+        }
+        for (int i = 0; i < 1000; i++) {
+            this.gameEasy.getNextWord();
+            assertTrue(this.gameEasy.isSeenLastWordBefore());
+        }
 
     }
 }
