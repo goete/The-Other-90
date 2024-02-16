@@ -9,6 +9,7 @@ public class Dictionary {
     private final ArrayList<String> dictionary;
     private final String fileName;
 
+
     // REQUIRES: difficulty is one of Easy, Medium, Hard
     public Dictionary(String difficulty) throws FileNotFoundException {
         // While this could be written in less lines, this adds a guard to the Scanner
@@ -45,14 +46,19 @@ public class Dictionary {
         return this.dictionary.size() == 0;
     }
 
+    // EFFECT: returns if the given word is contained in the dictionary
     public boolean contains(String word) {
         return this.dictionary.contains(word);
     }
 
+    // REQUIRES: this.dictionary.size > 0
+    // MODIFIES: this
+    // EFFECTS: returns a random word from the dictionary
     public String getRandomAndRemove() {
         return this.dictionary.remove(this.randomNumberGenerator());
     }
 
+    // EFFECTS: returns a randomly generated number [0, this.dictionary.size())
     public int randomNumberGenerator() {
         //Min + (int)(Math.random() * ((Max - Min) + 1)) gives number [Min, Max]
         // Min = 0, Max = dictionary.size() - 1

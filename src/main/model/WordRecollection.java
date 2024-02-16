@@ -56,5 +56,4 @@ public class WordRecollection extends Game {
         return this.dictionary;
     }
 
-
 }

@@ -27,6 +27,7 @@ public class Leaderboard {
 
     }
 
+    // EFFECTS: returns the correct name for the setter method to be called on player
     private String convertToCorrectNameSetting() {
         return "set" + this.name.replace(" ", "") + "HighScore";
 
@@ -50,10 +51,7 @@ public class Leaderboard {
         if (!board.contains(player)) {
             board.add(player);
         }
-
         this.settingMethod.invoke(player, game.getCurrentScore());
-
-
     }
 
     // EFFECTS: returns the high score of the player for the correct mode
@@ -61,8 +59,6 @@ public class Leaderboard {
         // this is solely for testing purposes
         // this would be very useless to actually use, outside of tests
         return (int) this.gettingMethod.invoke(player);
-
-
     }
 
     // EFFECTS: returns if the board is empty
@@ -87,6 +83,9 @@ public class Leaderboard {
 
     }
 
+    // REQUIRES: n > 0
+    // EFFECTS: through recursion, returns the top remaining player in the leaderboard to be added, then adds the next
+    //          n - 1 top players
     private ArrayList<Player> getNPlayersRecursion(
             int n, ArrayList<Player> toGoThrough, ArrayList<Player> correctOrder) throws InvocationTargetException,
             IllegalAccessException {

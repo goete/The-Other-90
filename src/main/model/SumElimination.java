@@ -75,6 +75,8 @@ public class SumElimination extends Game {
     }
 
 
+    // MODIFIES: this
+    // EFFECTS: sets the target
     public void setTarget(int target) {
         //for testing purposes only
         this.target = target;
