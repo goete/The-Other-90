@@ -35,7 +35,6 @@ public class TerminalGame {
         collectionOfNumbers = new ArrayList<>();
         highScoreViewing = false;
         position = 1;
-
         // EVERYTHING ABOVE HERE
         gameMechanics();
 
@@ -238,7 +237,7 @@ public class TerminalGame {
     private void sumEliminationMechanics() throws InvocationTargetException, IllegalAccessException {
         System.out.println("You will be faced with a number followed by a list of numbers");
         System.out.println("Write out the list of numbers "
-                + "that you need to eliminate, separated by a comma to get the top number");
+                + "that you need to eliminate, separated by a comma to get the remaining numbers to add to the target");
         while (currentGame) {
             sumEliminationGame = new SumElimination(gameDifficulty);
             gameInProgress = true;
@@ -259,7 +258,7 @@ public class TerminalGame {
 
     private void sumEliminationGameInProgress() throws InvocationTargetException, IllegalAccessException {
         this.collectionOfNumbers = sumEliminationGame.getNextNumbers();
-        System.out.println(sumEliminationGame.getTarget());
+        System.out.println("Target: " + sumEliminationGame.getTarget());
         System.out.println(sumEliminationGame.listOutTheNumbers(this.collectionOfNumbers));
 
         playerAnswer = scanner.next();
