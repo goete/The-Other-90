@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class TerminalGame {
-    private Scanner scanner;
+    private final Scanner scanner;
     private boolean gameContinues;
     private boolean currentGame;
     private boolean gameInProgress;
@@ -17,7 +17,7 @@ public class TerminalGame {
     private String gameDifficulty;
     private WordRecollection wordRecollectionGame;
     private SumElimination sumEliminationGame;
-    private Leaderboards leaderboard;
+    private final Leaderboards leaderboard;
     private ArrayList<Integer> collectionOfNumbers;
     private ArrayList<Player> topN;
     private boolean highScoreViewing;
