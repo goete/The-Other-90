@@ -40,6 +40,8 @@ public class TerminalGame {
 
     }
 
+    // MODIFIES: this
+    // EFFECTS: begins the game
     private void gameMechanics() throws InvocationTargetException, IllegalAccessException, FileNotFoundException {
         System.out.println("What is your player name?");
         player = new Player(scanner.next());
@@ -64,6 +66,8 @@ public class TerminalGame {
         }
     }
 
+    //MODIFIES: this
+    // EFFECTS: gets the user to select game mode and continues from there
     private void difficultySelectingAndContinuing() throws InvocationTargetException, IllegalAccessException,
             FileNotFoundException {
         System.out.println("Type Easy, Medium, or Hard to choose your difficulty");
@@ -82,6 +86,8 @@ public class TerminalGame {
         } // Otherwise loop continues
     }
 
+    // MODIFIES: this
+    // EFFECTS: Asks user what high score they want to see and helps produce it
     private void highScoreViewing() throws InvocationTargetException, IllegalAccessException {
         while (highScoreViewing) {
             System.out.println("What game would you like to view?");
@@ -99,6 +105,9 @@ public class TerminalGame {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: gets the users desired difficulty and number of players
+    //          then calls appropriate next steps
     private void highScoreDifficultyHandling() throws InvocationTargetException, IllegalAccessException {
         System.out.println("Type Easy, Medium or Hard to view that difficulty");
         nextInput = scanner.next();
@@ -124,6 +133,9 @@ public class TerminalGame {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: call appropriate method for each Sum high score
+    //          prints out if no users have played that game before
     private void handleHighScorePrintingOutSum() throws InvocationTargetException, IllegalAccessException {
         position = 1;
         if (gameDifficulty.equals("Easy")) {
@@ -147,6 +159,8 @@ public class TerminalGame {
         }
     }
 
+    // MODIFIES: this
+    // EFFECT: Prints out the top requested players for Sum Elimination Hard
     private void handleSumHardHighScore() throws InvocationTargetException, IllegalAccessException {
         topN = leaderboard.getSumEliminationHard().getTopNPlayers(numOfPlayersToView);
         for (Player player : topN) {
@@ -156,6 +170,8 @@ public class TerminalGame {
         }
     }
 
+    // MODIFIES: this
+    // EFFECT: Prints out the top requested players for Sum Elimination Medium
     private void handleSumMediumHighScore() throws InvocationTargetException, IllegalAccessException {
         topN = leaderboard.getSumEliminationMedium().getTopNPlayers(numOfPlayersToView);
         for (Player player : topN) {
@@ -165,6 +181,8 @@ public class TerminalGame {
         }
     }
 
+    // MODIFIES: this
+    // EFFECT: Prints out the top requested players for Sum Elimination Easy
     private void handleSumEasyHighScore() throws InvocationTargetException, IllegalAccessException {
         topN = leaderboard.getSumEliminationEasy().getTopNPlayers(numOfPlayersToView);
         for (Player player : topN) {
@@ -174,6 +192,9 @@ public class TerminalGame {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: call appropriate method for each Word high score
+    //          prints out if no users have played that game before
     private void handleHighScorePrintingOutWord() throws InvocationTargetException, IllegalAccessException {
         position = 1;
         if (gameDifficulty.equals("Easy")) {
@@ -197,6 +218,8 @@ public class TerminalGame {
         }
     }
 
+    // MODIFIES: this
+    // EFFECT: Prints out the top requested players for Word Recollection Hard
     private void handleWordHardHighScore() throws InvocationTargetException, IllegalAccessException {
         topN = leaderboard.getWordRecollectionHard().getTopNPlayers(numOfPlayersToView);
         for (Player player : topN) {
@@ -206,6 +229,8 @@ public class TerminalGame {
         }
     }
 
+    // MODIFIES: this
+    // EFFECT: Prints out the top requested players for Word Recollection Medium
     private void handleWordMediumHighScore() throws InvocationTargetException, IllegalAccessException {
         topN = leaderboard.getWordRecollectionMedium().getTopNPlayers(numOfPlayersToView);
         for (Player player : topN) {
@@ -215,6 +240,8 @@ public class TerminalGame {
         }
     }
 
+    // MODIFIES: this
+    // EFFECT: Prints out the top requested players for Word Recollection Easy
     private void handleWordEasyHighScore() throws InvocationTargetException, IllegalAccessException {
         topN = leaderboard.getWordRecollectionEasy().getTopNPlayers(numOfPlayersToView);
         for (Player player : topN) {
@@ -224,6 +251,8 @@ public class TerminalGame {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: calls the requested game's starting method
     private void handleGameStarting() throws InvocationTargetException, IllegalAccessException, FileNotFoundException {
         currentGame = true;
         System.out.println(gameMode);
@@ -234,6 +263,8 @@ public class TerminalGame {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: starts a sum elimination game
     private void sumEliminationMechanics() throws InvocationTargetException, IllegalAccessException {
         System.out.println("You will be faced with a number followed by a list of numbers");
         System.out.println("Write out the list of numbers "
@@ -248,6 +279,8 @@ public class TerminalGame {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: determines if game is being quit or not
     private void quittingCurrentGameQuestion() {
         System.out.println("If you would like to quit the game, say QUIT");
         playerAnswer = scanner.next();
@@ -256,6 +289,8 @@ public class TerminalGame {
         } // else we continue
     }
 
+    // MODIFIES: this
+    // EFFECTS: controls the game play of Sum Elimination
     private void sumEliminationGameInProgress() throws InvocationTargetException, IllegalAccessException {
         this.collectionOfNumbers = sumEliminationGame.getNextNumbers();
         System.out.println("Target: " + sumEliminationGame.getTarget());
@@ -273,6 +308,8 @@ public class TerminalGame {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: starts a Word Recollection game
     private void wordRecollectionMechanics() throws InvocationTargetException, IllegalAccessException,
             FileNotFoundException {
         System.out.println("You will be given a word, you need to type "
@@ -290,6 +327,8 @@ public class TerminalGame {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: controls the game play of Word Recollection
     private void wordRecollectionGameInProgress() throws InvocationTargetException, IllegalAccessException {
         System.out.println("The next word is: " + this.wordRecollectionGame.getNextWord());
         System.out.println("Have you seen this yet?");
