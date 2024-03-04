@@ -74,6 +74,23 @@ public class LeaderboardTest {
     }
 
     @Test
+    public void addingToLeaderboardWithoutGameTest() throws InvocationTargetException, IllegalAccessException {
+        Player player1 = new Player("one");
+        Player player2 = new Player("two");
+
+        player1.setWordRecollectionHardHighScore(2);
+        player2.setWordRecollectionHardHighScore(3);
+        assertTrue(this.wordRecollectionHard.isEmpty());
+        this.wordRecollectionHard.addToLeaderboard(player1);
+        assertFalse(this.wordRecollectionHard.isEmpty());
+        assertEquals(1, this.wordRecollectionHard.leaderboardSize());
+        this.wordRecollectionHard.addToLeaderboard(player2);
+        assertEquals(2, this.wordRecollectionHard.leaderboardSize());
+        this.wordRecollectionHard.addToLeaderboard(player1);
+        assertEquals(2, this.wordRecollectionHard.leaderboardSize());
+    }
+
+    @Test
     public void gettingTopPlayers() throws InvocationTargetException, IllegalAccessException {
         Player player1 = new Player("one");
         Player player2 = new Player("two");

@@ -1,5 +1,8 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -52,6 +55,15 @@ public class Leaderboard {
             board.add(player);
         }
         this.settingMethod.invoke(player, game.getCurrentScore());
+    }
+
+    // MODIFIES: this
+    // EFFECTS: adds given player to leaderboard
+    // USAGE: using to reload the leaderboards once the players have been loaded in
+    public void addToLeaderboard(Player player) {
+        if (!board.contains(player)) {
+            board.add(player);
+        }
     }
 
     // EFFECTS: returns the high score of the player for the correct mode
