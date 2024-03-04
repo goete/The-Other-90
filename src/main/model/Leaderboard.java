@@ -1,8 +1,5 @@
 package model;
 
-import org.json.JSONObject;
-import persistence.Writable;
-
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -98,6 +95,7 @@ public class Leaderboard {
     // REQUIRES: n > 0
     // EFFECTS: through recursion, returns the top remaining player in the leaderboard to be added, then adds the next
     //          n - 1 top players
+    //          If the highest player has a score of 0, it stops returning
     private ArrayList<Player> getNPlayersRecursion(
             int n, ArrayList<Player> toGoThrough, ArrayList<Player> correctOrder) throws InvocationTargetException,
             IllegalAccessException {
@@ -106,6 +104,9 @@ public class Leaderboard {
             if (this.getSpecificPlayersHighScore(player) > this.getSpecificPlayersHighScore(hold)) {
                 hold = player;
             }
+        }
+        if (this.getSpecificPlayersHighScore(hold) == 0) {
+            return correctOrder;
         }
         toGoThrough.remove(hold);
         correctOrder.add(hold);
@@ -119,6 +120,5 @@ public class Leaderboard {
     public String getGettingMethodNameAsString() {
         return gettingMethodNameAsString;
     }
-
 
 }

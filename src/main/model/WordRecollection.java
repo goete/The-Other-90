@@ -1,5 +1,7 @@
 package model;
 
+import org.json.JSONObject;
+
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
@@ -47,6 +49,11 @@ public class WordRecollection extends Game {
             this.seenLastWordBefore = false;
             return this.mostRecentNewWord;
         }
+    }
+
+    // TODO: JSONObject toJson();
+    public JSONObject toJson() {
+        return null;
     }
 
     public boolean isSeenLastWordBefore() {

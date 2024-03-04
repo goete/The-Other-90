@@ -1,5 +1,8 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 public class Player {
     private final String name;
     private int sumEliminationEasyHighScore;
@@ -96,6 +99,17 @@ public class Player {
         }
     }
 
-
+    // EFFECTS: returns the player as a Json
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", this.name);
+        json.put("Sum Elimination Easy", this.sumEliminationEasyHighScore);
+        json.put("Sum Elimination Medium", this.sumEliminationMediumHighScore);
+        json.put("Sum Elimination Hard", this.sumEliminationHardHighScore);
+        json.put("Word Recollection Easy", this.wordRecollectionEasyHighScore);
+        json.put("Word Recollection Medium", this.wordRecollectionMediumHighScore);
+        json.put("Word Recollection Hard", this.wordRecollectionHardHighScore);
+        return json;
+    }
 
 }

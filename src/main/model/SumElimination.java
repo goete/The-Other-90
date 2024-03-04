@@ -1,6 +1,8 @@
 package model;
 
 
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -125,6 +127,11 @@ public class SumElimination extends Game {
             hold += n;
         }
         return hold;
+    }
+
+    // TODO: JSONObject toJson();
+    public JSONObject toJson() {
+        return null;
     }
 
     public int getLowerBound() {

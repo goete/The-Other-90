@@ -1,8 +1,11 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.io.FileNotFoundException;
 
-public abstract class Game {
+public abstract class Game implements Writable {
     protected final String difficulty;
     protected int currentScore;
     private final String name;
@@ -72,4 +75,6 @@ public abstract class Game {
     }
 
     public abstract void resetGame() throws FileNotFoundException;
+
+    public abstract JSONObject toJson();
 }
