@@ -74,7 +74,7 @@ public class LeaderboardTest {
     }
 
     @Test
-    public void addingToLeaderboardWithoutGameTest() throws InvocationTargetException, IllegalAccessException {
+    public void addingToLeaderboardWithoutGameTest() {
         Player player1 = new Player("one");
         Player player2 = new Player("two");
 
