@@ -316,14 +316,13 @@ public class TerminalGame {
                 + "Yes if you have seen the word earlier in the round");
         System.out.println("Otherwise, type No for having not seen it");
         while (currentGame) {
-            while (currentGame) {
-                wordRecollectionGame = new WordRecollection(gameDifficulty);
-                gameInProgress = true;
-                while (gameInProgress) {
-                    wordRecollectionGameInProgress();
-                }
-                quittingCurrentGameQuestion();
+            wordRecollectionGame = new WordRecollection(gameDifficulty);
+            gameInProgress = true;
+            while (gameInProgress) {
+                wordRecollectionGameInProgress();
             }
+            quittingCurrentGameQuestion();
+
         }
     }
 
