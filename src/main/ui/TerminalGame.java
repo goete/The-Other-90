@@ -71,17 +71,17 @@ public class TerminalGame {
     private void difficultySelectingAndContinuing() throws InvocationTargetException, IllegalAccessException,
             FileNotFoundException {
         System.out.println("Type Easy, Medium, or Hard to choose your difficulty");
-        nextInput = scanner.next();
-        if (nextInput.equals("Easy")) {
+        nextInput = scanner.next().toLowerCase();
+        if (nextInput.equals("easy")) {
             gameDifficulty = "Easy";
-        } else if (nextInput.equals("Medium")) {
+        } else if (nextInput.equals("medium")) {
             gameDifficulty = "Medium";
         } else {
             gameDifficulty = "Hard";
         }
         handleGameStarting();
-        System.out.println("Say YES to close program, anything else to play a new game");
-        if (scanner.next().equals("YES")) {
+        System.out.println("Say QUIT to close program or continue to keep playing");
+        if (scanner.next().equals("QUIT")) {
             gameContinues = false;
         } // Otherwise loop continues
     }
@@ -93,11 +93,9 @@ public class TerminalGame {
             System.out.println("What game would you like to view?");
             System.out.println("Type Word to view Word Recollection");
             System.out.println("Type Sum to view Sum Elimination");
-            nextInput = scanner.next();
-            if (nextInput.equals("Word")) {
+            nextInput = scanner.next().toUpperCase();
+            if (nextInput.equals("WORD")) {
                 gameMode = "Word Recollection ";
-            } else if (nextInput.equals("HS")) {
-                highScoreViewing = true;
             } else {
                 gameMode = "Sum Elimination ";
             }
@@ -110,10 +108,10 @@ public class TerminalGame {
     //          then calls appropriate next steps
     private void highScoreDifficultyHandling() throws InvocationTargetException, IllegalAccessException {
         System.out.println("Type Easy, Medium or Hard to view that difficulty");
-        nextInput = scanner.next();
-        if (nextInput.equals("Easy")) {
+        nextInput = scanner.next().toUpperCase();
+        if (nextInput.equals("EASY")) {
             gameDifficulty = "Easy";
-        } else if (nextInput.equals("Medium")) {
+        } else if (nextInput.equals("MEDIUM")) {
             gameDifficulty = "Medium";
         } else {
             gameDifficulty = "Hard";
@@ -125,10 +123,9 @@ public class TerminalGame {
         } else {
             handleHighScorePrintingOutSum();
         }
-        System.out.println("Would you like to view high scores again?"
-                + " If so, type YES, to return to main menu, say anything else");
-        nextInput = scanner.next();
-        if (!nextInput.equals("YES")) {
+        System.out.println("To view high scores again, say again. Otherwise say return to return to main menu");
+        nextInput = scanner.next().toLowerCase();
+        if (!nextInput.equals("again")) {
             this.highScoreViewing = false;
         }
     }
