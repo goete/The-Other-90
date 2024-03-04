@@ -68,4 +68,15 @@ public class LeaderboardsTest {
         this.leaderboards.addPlayerToLeaderboard(player1, this.wordRecollectionHard);
         assertEquals(player1, this.wordRecollectionHardBoard.getTopNPlayers(1).get(0));
     }
+
+    @Test
+    public void addingToAllTest() throws InvocationTargetException, IllegalAccessException {
+        this.leaderboards.addToAllLeaderboards(player1);
+        assertEquals(player1, this.sumEliminationMediumBoard.getTopNPlayers(1).get(0));
+        assertEquals(player1, this.sumEliminationEasyBoard.getTopNPlayers(1).get(0));
+        assertEquals(player1, this.sumEliminationHardBoard.getTopNPlayers(1).get(0));
+        assertEquals(player1, this.wordRecollectionEasyBoard.getTopNPlayers(1).get(0));
+        assertEquals(player1, this.wordRecollectionMediumBoard.getTopNPlayers(1).get(0));
+        assertEquals(player1, this.wordRecollectionHardBoard.getTopNPlayers(1).get(0));
+    }
 }

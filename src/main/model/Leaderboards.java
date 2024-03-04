@@ -58,6 +58,15 @@ public class Leaderboards {
         }
     }
 
+    public void addToAllLeaderboards(Player player) {
+        this.sumEliminationEasy.addToLeaderboard(player);
+        this.sumEliminationMedium.addToLeaderboard(player);
+        this.sumEliminationHard.addToLeaderboard(player);
+        this.wordRecollectionEasy.addToLeaderboard(player);
+        this.wordRecollectionMedium.addToLeaderboard(player);
+        this.wordRecollectionHard.addToLeaderboard(player);
+    }
+
     public Leaderboard getSumEliminationEasy() {
         return sumEliminationEasy;
     }
