@@ -129,10 +129,6 @@ public class SumElimination extends Game {
         return hold;
     }
 
-    // TODO: JSONObject toJson();
-    public JSONObject toJson() {
-        return null;
-    }
 
     public int getLowerBound() {
         return lowerBound;

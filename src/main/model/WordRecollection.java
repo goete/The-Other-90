@@ -51,11 +51,6 @@ public class WordRecollection extends Game {
         }
     }
 
-    // TODO: JSONObject toJson();
-    public JSONObject toJson() {
-        return null;
-    }
-
     public boolean isSeenLastWordBefore() {
         return seenLastWordBefore;
     }
