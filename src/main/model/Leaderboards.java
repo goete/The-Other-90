@@ -18,7 +18,7 @@ public class Leaderboards implements Writable {
     private final ArrayList<Player> allPlayers;
 
     // EFFECTS: initializes all the leaderboards
-    public Leaderboards() throws ClassNotFoundException, NoSuchMethodException {
+    public Leaderboards() {
         this.allPlayers = new ArrayList<>();
         this.sumEliminationEasy = new Leaderboard("Sum Elimination Easy");
         this.sumEliminationMedium = new Leaderboard("Sum Elimination Medium");

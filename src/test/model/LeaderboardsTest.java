@@ -1,12 +1,15 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.FileNotFoundException;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class LeaderboardsTest {
     Leaderboards leaderboards;
@@ -51,6 +54,13 @@ public class LeaderboardsTest {
 
     @Test
     public void playerAdding() throws InvocationTargetException, IllegalAccessException {
+        player1.setSumEliminationEasyHighScore(1);
+        player1.setSumEliminationMediumHighScore(1);
+        player1.setSumEliminationHardHighScore(1);
+
+        player1.setWordRecollectionEasyHighScore(1);
+        player1.setWordRecollectionMediumHighScore(1);
+        player1.setWordRecollectionHardHighScore(1);
         this.leaderboards.addPlayerToLeaderboard(player1, this.sumEliminationMedium);
         assertEquals(player1, this.sumEliminationMediumBoard.getTopNPlayers(1).get(0));
         this.leaderboards.addPlayerToLeaderboard(player1, this.sumEliminationEasy);
@@ -72,6 +82,14 @@ public class LeaderboardsTest {
     @Test
     public void addingToAllTest() throws InvocationTargetException, IllegalAccessException {
         this.leaderboards.addToAllLeaderboards(player1);
+        player1.setSumEliminationEasyHighScore(1);
+        player1.setSumEliminationMediumHighScore(1);
+        player1.setSumEliminationHardHighScore(1);
+
+        player1.setWordRecollectionEasyHighScore(1);
+        player1.setWordRecollectionMediumHighScore(1);
+        player1.setWordRecollectionHardHighScore(1);
+
         assertEquals(player1, this.sumEliminationMediumBoard.getTopNPlayers(1).get(0));
         assertEquals(player1, this.sumEliminationEasyBoard.getTopNPlayers(1).get(0));
         assertEquals(player1, this.sumEliminationHardBoard.getTopNPlayers(1).get(0));
@@ -79,4 +97,41 @@ public class LeaderboardsTest {
         assertEquals(player1, this.wordRecollectionMediumBoard.getTopNPlayers(1).get(0));
         assertEquals(player1, this.wordRecollectionHardBoard.getTopNPlayers(1).get(0));
     }
+
+    @Test
+    public void addingWithoutScore() throws InvocationTargetException, IllegalAccessException {
+        this.leaderboards.addPlayerToLeaderboard(player1, this.wordRecollectionEasy);
+        assertEquals(new ArrayList<Player>(), this.wordRecollectionEasyBoard.getTopNPlayers(1));
+    }
+
+    @Test
+    public void toJsonTestEmpty() {
+        JSONObject json = new JSONObject();
+        JSONArray jsonArray = new JSONArray();
+        for (Player p : this.leaderboards.getAllPlayers()) {
+            jsonArray.put(p.toJson());
+        }
+        json.put("Players", jsonArray);
+        assertEquals(json.toString(), this.leaderboards.toJson().toString());
+
+    }
+
+    @Test
+    public void toJsonTestWithPlayers() {
+        JSONObject json = new JSONObject();
+        JSONArray jsonArray = new JSONArray();
+        player1.setWordRecollectionHardHighScore(1);
+        player1.setSumEliminationEasyHighScore(3);
+        player2.setSumEliminationEasyHighScore(2);
+        player2.setSumEliminationHardHighScore(6);
+        this.leaderboards.addToAllLeaderboards(player1);
+        this.leaderboards.addToAllLeaderboards(player2);
+        for (Player p : this.leaderboards.getAllPlayers()) {
+            jsonArray.put(p.toJson());
+        }
+        json.put("Players", jsonArray);
+        assertEquals(json.toString(), this.leaderboards.toJson().toString());
+
+    }
+
 }

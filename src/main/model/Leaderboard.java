@@ -15,14 +15,18 @@ public class Leaderboard {
 
     // REQUIRES: name is [Sum Elimination|Word Recollection] [Easy|Medium|Hard]
     // EFFECTS: makes a leaderboard for given game and difficulty
-    public Leaderboard(String name) throws ClassNotFoundException, NoSuchMethodException {
+    public Leaderboard(String name) {
         this.name = name;
         this.board = new ArrayList<>();
         this.storage = new ArrayList<>();
         this.gettingMethodNameAsString = this.convertToCorrectNameGetting();
 
-        this.gettingMethod = Class.forName("model.Player").getMethod(gettingMethodNameAsString);
-        this.settingMethod = Class.forName("model.Player").getMethod(this.convertToCorrectNameSetting(), int.class);
+        try {
+            this.gettingMethod = Class.forName("model.Player").getMethod(gettingMethodNameAsString);
+            this.settingMethod = Class.forName("model.Player").getMethod(this.convertToCorrectNameSetting(), int.class);
+        } catch (NoSuchMethodException | ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
 
 
     }
