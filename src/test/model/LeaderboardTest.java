@@ -7,17 +7,15 @@ import java.io.FileNotFoundException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class LeaderboardTest {
-    Leaderboard sumEliminationEasy;
-    Leaderboard sumEliminationMedium;
-    Leaderboard wordRecollectionHard;
-    Game wordRecollectionHardGame;
-    Game sumEliminationEasyGame;
-    Game sumEliminationMediumGame;
+    private Leaderboard sumEliminationEasy;
+    private Leaderboard sumEliminationMedium;
+    private Leaderboard wordRecollectionHard;
+    private Game wordRecollectionHardGame;
+    private Game sumEliminationEasyGame;
+    private Game sumEliminationMediumGame;
 
 
     @BeforeEach
@@ -122,6 +120,17 @@ public class LeaderboardTest {
         assertEquals(full.subList(0, 1), this.wordRecollectionHard.getTopNPlayers(1));
         assertEquals(full, this.wordRecollectionHard.getTopNPlayers(3));
         assertEquals(full, this.wordRecollectionHard.getTopNPlayers(10));
+    }
+
+    @Test
+    void makingUpStuff() {
+        try {
+            Leaderboard fake = new Leaderboard("fake");
+            fail();
+        } catch (RuntimeException ee) {
+            assertTrue(true);
+        }
+
     }
 
 

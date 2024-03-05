@@ -11,10 +11,10 @@ import java.lang.reflect.InvocationTargetException;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class JsonReaderLeaderboardsTest {
-    Leaderboards l;
-    Player p;
-    Player p2;
-    JsonReaderLeaderboards reader;
+    private Leaderboards l;
+    private Player p;
+    private Player p2;
+    private JsonReaderLeaderboards reader;
 
     @BeforeEach
     void before() {
