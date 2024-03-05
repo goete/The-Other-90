@@ -33,13 +33,6 @@ public class JsonWriter {
     }
 
     // MODIFIES: this
-    // EFFECTS: writes JSON representation of Game to file
-    public void write(Game g) {
-        JSONObject json = g.toJson();
-        saveToFile(json.toString(TAB));
-    }
-
-    // MODIFIES: this
     // EFFECTS: closes writer
     public void close() {
         writer.close();
