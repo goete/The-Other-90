@@ -134,4 +134,14 @@ public class LeaderboardsTest {
 
     }
 
+    @Test
+    void doubleAdding() {
+        this.leaderboards.addToAllLeaderboards(player1);
+        assertEquals(1, this.leaderboards.getSumEliminationMedium().leaderboardSize());
+        assertEquals(1, this.leaderboards.getAllPlayers().size());
+        this.leaderboards.addToAllLeaderboards(player1);
+        assertEquals(1, this.leaderboards.getSumEliminationMedium().leaderboardSize());
+        assertEquals(1, this.leaderboards.getAllPlayers().size());
+    }
+
 }
