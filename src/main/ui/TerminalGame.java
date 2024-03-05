@@ -1,8 +1,11 @@
 package ui;
 
 import model.*;
+import persistence.JsonReaderLeaderboards;
+import persistence.JsonWriter;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -17,7 +20,7 @@ public class TerminalGame {
     private String gameDifficulty;
     private WordRecollection wordRecollectionGame;
     private SumElimination sumEliminationGame;
-    private final Leaderboards leaderboard;
+    private Leaderboards leaderboard;
     private ArrayList<Integer> collectionOfNumbers;
     private ArrayList<Player> topN;
     private boolean highScoreViewing;
@@ -25,6 +28,9 @@ public class TerminalGame {
     private String playerAnswer;
     private int numOfPlayersToView;
     private int position;
+    private final JsonReaderLeaderboards jsonReaderLeaderboards;
+    private final JsonWriter jsonWriter;
+    private String name;
 
 
     public TerminalGame() throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException,
@@ -35,28 +41,32 @@ public class TerminalGame {
         collectionOfNumbers = new ArrayList<>();
         highScoreViewing = false;
         position = 1;
+        jsonWriter = new JsonWriter("./data/Players.json");
+        jsonReaderLeaderboards = new JsonReaderLeaderboards("./data/Players.json");
+
         // EVERYTHING ABOVE HERE
         gameMechanics();
-
     }
 
     // MODIFIES: this
     // EFFECTS: begins the game
     private void gameMechanics() throws InvocationTargetException, IllegalAccessException, FileNotFoundException {
-        System.out.println("What is your player name?");
-        player = new Player(scanner.next());
+        beginningGameLines();
+        name = scanner.next();
+        this.player = new Player(name);
         while (gameContinues) {
-            gameMode = "";
-            System.out.println("Type Word to play Word Recollection");
-            System.out.println("Type Sum to play Sum Elimination");
-            System.out.println("Type HS to view high scores");
-            nextInput = scanner.next();
-            if (nextInput.equals("Word")) {
-                gameMode = "Word Recollection ";
-            } else if (nextInput.equals("HS")) {
-                highScoreViewing = true;
+            printOutputs();
+            if (nextInput.equals("word") || nextInput.equals("sum") || nextInput.equals("hs")) {
+                dealWithInput();
+            } else if (nextInput.equals("load")) {
+                loadLeaderboards();
+                continue;
+            } else if (nextInput.equals("save")) {
+                saveLeaderboards();
+                continue;
             } else {
-                gameMode = "Sum Elimination ";
+                System.out.println("Input an option");
+                continue;
             }
             if (!highScoreViewing) {
                 difficultySelectingAndContinuing();
@@ -64,6 +74,68 @@ public class TerminalGame {
                 highScoreViewing();
             }
         }
+    }
+
+    private void beginningGameLines() {
+        System.out.println("What is your player name?");
+        System.out.println("If you already have an account, type the exact name (case-sensitive) "
+                + "to log in once loading saved progress");
+    }
+
+    private void dealWithInput() {
+        switch (nextInput) {
+            case "word":
+                gameMode = "Word Recollection ";
+                break;
+            case "hs":
+                highScoreViewing = true;
+                break;
+            case "sum":
+                gameMode = "Sum Elimination ";
+                break;
+        }
+    }
+
+    private void loadLeaderboards() {
+        try {
+            this.leaderboard = this.jsonReaderLeaderboards.readLeaderboards();
+            System.out.println("Loading Success!");
+            potentiallyLoggingIn();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void potentiallyLoggingIn() {
+        for (Player p : this.leaderboard.getAllPlayers()) {
+            if (p.getName().equals(name)) {
+                this.player = p;
+                break;
+            }
+        }
+        System.out.println("Successfully logged you in as " + this.player.getName());
+    }
+
+    private void saveLeaderboards() {
+        try {
+            this.jsonWriter.open();
+            this.jsonWriter.write(this.leaderboard);
+            this.jsonWriter.close();
+            System.out.println("Saving Success!");
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    private void printOutputs() {
+        this.gameMode = "";
+        System.out.println("Type Word to play Word Recollection");
+        System.out.println("Type Sum to play Sum Elimination");
+        System.out.println("Type HS to view high scores");
+        System.out.println("Type Load to load in saved high scores");
+        System.out.println("Type Save to save current high scores");
+        this.nextInput = scanner.next().toLowerCase();
     }
 
     //MODIFIES: this
