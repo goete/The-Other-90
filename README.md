@@ -44,7 +44,7 @@ Words for Word Recollection found on https://github.com/first20hours/google-1000
 5. As a user, I want to be able to be able to actually play the games.
 6. As a user, I want to be able to see the time I have for each turn.
 7. As a user, I want to be able to see a leaderboard of the top scores.
-8. As a user, I want to be able to save at any point during the games.
+8. As a user, I want to be able to log into my 'account' and continue working on the same high scores.
 9. As a user, I want to be able to reload my data when opening the application.
 
 
