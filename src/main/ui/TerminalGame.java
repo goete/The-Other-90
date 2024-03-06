@@ -108,12 +108,13 @@ public class TerminalGame {
 
     private void potentiallyLoggingIn() {
         for (Player p : this.leaderboard.getAllPlayers()) {
-            if (p.getName().equals(name)) {
+            if (p.getName().equals(this.name)) {
                 this.player = p;
+                System.out.println("Successfully logged you in as " + this.player.getName());
                 break;
             }
         }
-        System.out.println("Successfully logged you in as " + this.player.getName());
+
     }
 
     private void saveLeaderboards() {
