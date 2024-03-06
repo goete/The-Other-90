@@ -46,5 +46,6 @@ Words for Word Recollection found on https://github.com/first20hours/google-1000
 7. As a user, I want to be able to see a leaderboard of the top scores.
 8. As a user, I want to be able to log into my 'account' and continue working on the same high scores.
 9. As a user, I want to be able to reload my data when opening the application.
+10. As a user, I want to be able to save my high scores.
 
 
