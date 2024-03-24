@@ -3,7 +3,7 @@ package ui;
 import java.io.FileNotFoundException;
 import java.lang.reflect.InvocationTargetException;
 
-public class Main {
+public class MainTerminal {
 
 
     // creates and runs the game
