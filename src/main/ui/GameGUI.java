@@ -49,16 +49,23 @@ public class GameGUI extends Canvas {
     }
 
     private void setUpPanels() {
-        menuPanel = new MenuPanel(width, height);
+        menuPanel = new MenuPanel(width, height, this);
         overallFrame = new JFrame();
         overallFrame.setSize(600, 600);
         overallFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
-    private void showFrameByString(String frameTitle) {
+    public void showFrameByString(String frameTitle) {
         CardLayout cl = (CardLayout) (cards.getLayout());
         cl.show(cards, frameTitle);
 
     }
 
+    // TODO
+    public void loadHighScores() {
+    }
+
+    // TODO
+    public void saveHighScores() {
+    }
 }
