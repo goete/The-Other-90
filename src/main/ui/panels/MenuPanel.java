@@ -37,7 +37,7 @@ public class MenuPanel extends JPanel implements ActionListener {
         this.allTheButtons.add(this.highScoresButton);
         this.allTheButtons.add(this.savingButton);
         this.allTheButtons.add(this.loadingButton);
-        setUpButtons();
+        this.setUpButtons();
         this.game.repaint();
     }
 
@@ -74,6 +74,7 @@ public class MenuPanel extends JPanel implements ActionListener {
         if (e.getSource() == this.sumEliminationButton) {
             game.showFrameByString(this.game.getTitleSum());
         } else if (e.getSource() == this.wordRecollectionButton) {
+            // game.getWordRecollectionPanel().startingNewGame();
             game.showFrameByString(this.game.getTitleWord());
         } else if (e.getSource() == this.highScoresButton) {
             game.showFrameByString(this.game.getTitleLeaderboard());
