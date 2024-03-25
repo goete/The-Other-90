@@ -35,11 +35,17 @@ essentially stopped working.
 
 Words for Word Recollection found on https://github.com/first20hours/google-10000-english.
 
+Logos were both generated using https://aitestkitchen.withgoogle.com/tools/image-fx. The given prompt was, after much
+deliberation:
+Make a logo for a game called "The Other 90" with the slogan "Maximize Your Mentality". Include both the name and the
+tagline in the image . Spell all the words correctly and don't omit any.
+
 ## User Stories
 
 1. As a user, I want to be able to choose which game mode and difficulty I am going to play.
 2. As a user, I want to be able to see a list of my high scores for each game and difficulty.
-3. As a user, I want to be able to see a list of all the words in the "Seen the word game" that I saw in the previous round.
+3. As a user, I want to be able to see a list of all the words in the "Seen the word game" that I saw in the previous
+   round.
 4. As a user, I want to be able to have my high score separate from other people's by my name.
 5. As a user, I want to be able to be able to actually play the games.
 6. As a user, I want to be able to see the time I have for each turn.
