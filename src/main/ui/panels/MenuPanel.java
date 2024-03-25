@@ -25,28 +25,30 @@ public class MenuPanel extends JPanel implements ActionListener {
         this.setPreferredSize(new Dimension(width, height));
         this.height = height;
         this.width = width;
-        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        this.setLayout(null);
         this.allTheButtons = new ArrayList<>();
         this.sumEliminationButton = new JButton("Sum Elimination");
         this.highScoresButton = new JButton("High Scores");
         this.wordRecollectionButton = new JButton("Word Recollection");
         this.loadingButton = new JButton("Loading");
         this.savingButton = new JButton("Saving");
-        this.allTheButtons.add(this.savingButton);
         this.allTheButtons.add(this.sumEliminationButton);
         this.allTheButtons.add(this.wordRecollectionButton);
-        this.allTheButtons.add(this.loadingButton);
         this.allTheButtons.add(this.highScoresButton);
+        this.allTheButtons.add(this.savingButton);
+        this.allTheButtons.add(this.loadingButton);
         setUpButtons();
         this.game.repaint();
     }
 
     private void setUpButtons() {
+        int counter = 0;
         for (JButton button : this.allTheButtons) {
             button.setAlignmentX(Component.CENTER_ALIGNMENT);
             button.addActionListener(this);
-            // TODO: why isn't this working?
-            //button.setSize(this.width / this.allTheButtons.size(), this.height / this.allTheButtons.size());
+            button.setSize(this.width, (this.height - 50) / this.allTheButtons.size());
+            button.setLocation(0, ((this.height - 50) / this.allTheButtons.size()) * counter + 50);
+            counter++;
         }
     }
 
@@ -55,11 +57,11 @@ public class MenuPanel extends JPanel implements ActionListener {
     public void paintComponent(final Graphics graphics) {
         graphics.setColor(Color.WHITE);
         graphics.clearRect(0, 0, width, height);
-        paintButtons(graphics);
+        paintButtons();
         // paintShuffleHandButton(graphics);
     }
 
-    private void paintButtons(Graphics graphics) {
+    private void paintButtons() {
         this.add(this.sumEliminationButton);
         this.add(this.wordRecollectionButton);
         this.add(this.highScoresButton);
@@ -85,11 +87,11 @@ public class MenuPanel extends JPanel implements ActionListener {
 
     // Reference for using graphics
     // Citation: https://github.com/goete/Scrabble
-    /* private void paintShuffleHandButton(final Graphics graphics) {
-        graphics.setColor(Color.WHITE);
-        graphics.fillOval(93, 530, 20, 20);
-        graphics.setFont(new Font("TimesRoman", Font.PLAIN, 18));
-        graphics.setColor(Color.BLACK);
-        graphics.drawString("⇄", 95, 547);
-    }*/
+//    private void paintShuffleHandButton(final Graphics graphics) {
+//        graphics.setColor(Color.WHITE);
+//        graphics.fillOval(93, 530, 20, 20);
+//        graphics.setFont(new Font("TimesRoman", Font.PLAIN, 18));
+//        graphics.setColor(Color.BLACK);
+//        graphics.drawString("⇄", 95, 547);
+//    }
 }
