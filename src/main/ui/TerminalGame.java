@@ -33,8 +33,7 @@ public class TerminalGame {
     private String name;
 
 
-    public TerminalGame() throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException,
-            IllegalAccessException, FileNotFoundException {
+    public TerminalGame() throws InvocationTargetException, IllegalAccessException, FileNotFoundException {
         scanner = new Scanner(System.in);
         gameContinues = true;
         leaderboard = new Leaderboards();
