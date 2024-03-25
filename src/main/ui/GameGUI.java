@@ -112,7 +112,7 @@ public class GameGUI extends Canvas {
     private void setUpPanels() {
         this.menuPanel = new MenuPanel(width, height, this);
         this.sumEliminationPanel = new SumEliminationPanel(width, height);
-        this.wordRecollectionPanel = new WordRecollectionPanel(width, height);
+        this.wordRecollectionPanel = new WordRecollectionPanel(width, height, this);
         this.leaderboardPanel = new LeaderboardPanel(width, height);
         this.loadingScreenPanel = new LoadingScreenPanel(width, height, this);
         overallFrame = new JFrame();
@@ -193,6 +193,14 @@ public class GameGUI extends Canvas {
 
     public String getTitleSum() {
         return titleSum;
+    }
+
+    public SumEliminationPanel getSumEliminationPanel() {
+        return sumEliminationPanel;
+    }
+
+    public WordRecollectionPanel getWordRecollectionPanel() {
+        return wordRecollectionPanel;
     }
 
     public void loop() {
