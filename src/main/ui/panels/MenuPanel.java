@@ -1,4 +1,4 @@
-package ui.frames;
+package ui.panels;
 
 import ui.GameGUI;
 
@@ -17,11 +17,9 @@ public class MenuPanel extends JPanel implements ActionListener {
     private final JButton loadingButton;
     private final JButton savingButton;
     private final ArrayList<JButton> allTheButtons;
-    private final String titleWord = "Word Recollection";
-    private final String titleSum = "Sum Recollection";
-    private final String titleLeaderboard = "Leaderboards";
     private final GameGUI game;
 
+    // Citation: https://github.com/goete/Scrabble
     public MenuPanel(int width, int height, GameGUI game) {
         this.game = game;
         this.setPreferredSize(new Dimension(width, height));
@@ -40,6 +38,7 @@ public class MenuPanel extends JPanel implements ActionListener {
         this.allTheButtons.add(this.loadingButton);
         this.allTheButtons.add(this.highScoresButton);
         setUpButtons();
+        this.game.repaint();
     }
 
     private void setUpButtons() {
@@ -61,7 +60,6 @@ public class MenuPanel extends JPanel implements ActionListener {
     }
 
     private void paintButtons(Graphics graphics) {
-
         this.add(this.sumEliminationButton);
         this.add(this.wordRecollectionButton);
         this.add(this.highScoresButton);
@@ -72,11 +70,11 @@ public class MenuPanel extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == this.sumEliminationButton) {
-            game.showFrameByString(this.titleSum);
+            game.showFrameByString(this.game.getTitleSum());
         } else if (e.getSource() == this.wordRecollectionButton) {
-            game.showFrameByString(this.titleWord);
+            game.showFrameByString(this.game.getTitleWord());
         } else if (e.getSource() == this.highScoresButton) {
-            game.showFrameByString(this.titleLeaderboard);
+            game.showFrameByString(this.game.getTitleLeaderboard());
         } else if (e.getSource() == this.loadingButton) {
             game.loadHighScores();
         } else if (e.getSource() == this.savingButton) {
