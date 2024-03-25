@@ -7,8 +7,11 @@ import persistence.JsonWriter;
 import ui.listeners.Mouse;
 import ui.panels.*;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
@@ -22,7 +25,7 @@ public class GameGUI extends Canvas {
     private final String titleSum = "Sum Recollection";
     private final String titleLeaderboard = "Leaderboards";
     private final String titleSplash = "Loading";
-    private final String startingScreenName = titleMenu; // TODO: CHANGE TO SPLASH
+    private final String startingScreenName = titleSplash; // TODO: CHANGE TO SPLASH
     private MenuPanel menuPanel;
     private LeaderboardPanel leaderboardPanel;
     private SumEliminationPanel sumEliminationPanel;
@@ -39,9 +42,11 @@ public class GameGUI extends Canvas {
     private Leaderboards leaderboards;
     private final JsonReaderLeaderboards jsonReaderLeaderboards;
     private final JsonWriter jsonWriter;
-
+    private BufferedImage cornerLogo;
+    private String topCornerFilePath = "data/top-Left-Corner.jpg";
 
     public GameGUI() {
+        this.cornerLogo = loadImage(topCornerFilePath);
         cards = new JPanel(new CardLayout());
         settingUpMouseListener();
         setUpPanels();
@@ -65,11 +70,25 @@ public class GameGUI extends Canvas {
         jsonReaderLeaderboards = new JsonReaderLeaderboards("./data/Players.json");
     }
 
+    public BufferedImage getCornerLogo() {
+        return cornerLogo;
+    }
+
     private void settingUpMouseListener() {
         mouse = new Mouse();
         cards.addMouseListener(mouse);
         cards.addMouseMotionListener(mouse);
         cards.addMouseWheelListener(mouse);
+    }
+
+    private BufferedImage loadImage(String filename) {
+        BufferedImage bufferedImage = null;
+        try {
+            bufferedImage = ImageIO.read(new File(filename));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return bufferedImage;
     }
 
 
@@ -95,7 +114,7 @@ public class GameGUI extends Canvas {
         this.sumEliminationPanel = new SumEliminationPanel(width, height);
         this.wordRecollectionPanel = new WordRecollectionPanel(width, height);
         this.leaderboardPanel = new LeaderboardPanel(width, height);
-        this.loadingScreenPanel = new LoadingScreenPanel(width, height);
+        this.loadingScreenPanel = new LoadingScreenPanel(width, height, this);
         overallFrame = new JFrame();
         overallFrame.setSize(600, 600);
         overallFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -105,7 +124,6 @@ public class GameGUI extends Canvas {
         CardLayout cl = (CardLayout) (cards.getLayout());
         cl.show(cards, frameTitle);
         this.currentFrame = frameTitle;
-        overallFrame.repaint();
     }
 
 
@@ -130,7 +148,7 @@ public class GameGUI extends Canvas {
 
     }
 
-    // TODO
+
     public void saveHighScores() {
         try {
             this.jsonWriter.open();
@@ -157,6 +175,11 @@ public class GameGUI extends Canvas {
     public void update() {
         repaint();
         loop();
+    }
+
+    public void setPlayerBasedOnName(String name) {
+        this.player = new Player(name);
+        this.leaderboards.addToAllLeaderboards(player);
     }
 
 
@@ -192,5 +215,9 @@ public class GameGUI extends Canvas {
         }
 
 
+    }
+
+    public String getTitleMenu() {
+        return titleMenu;
     }
 }
