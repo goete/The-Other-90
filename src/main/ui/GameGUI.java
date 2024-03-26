@@ -119,7 +119,7 @@ public class GameGUI extends Canvas {
     public void loadHighScores() {
         try {
             this.leaderboards = this.jsonReaderLeaderboards.readLeaderboards();
-            // TODO: System.out.println("Loading Success!");
+            this.menuPanel.setBottomTextField("Loading high scores a success!");
             potentiallyLoggingIn();
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -130,7 +130,14 @@ public class GameGUI extends Canvas {
         for (Player p : this.leaderboards.getAllPlayers()) {
             if (p.getName().equals(this.name)) {
                 this.player = p;
-                System.out.println("Successfully logged you in as " + this.player.getName());
+                this.menuPanel.setBottomTextField("Loading high scores a success! \n "
+                        + "Successfully logged you in as " + this.player.getName());
+                this.player.setSumEliminationEasyHighScore(p.getSumEliminationEasyHighScore());
+                this.player.setSumEliminationMediumHighScore(p.getSumEliminationMediumHighScore());
+                this.player.setSumEliminationHardHighScore(p.getSumEliminationHardHighScore());
+                this.player.setWordRecollectionEasyHighScore(p.getWordRecollectionEasyHighScore());
+                this.player.setWordRecollectionMediumHighScore(p.getWordRecollectionMediumHighScore());
+                this.player.setSumEliminationHardHighScore(p.getWordRecollectionHardHighScore());
                 break;
             }
         }
@@ -143,7 +150,7 @@ public class GameGUI extends Canvas {
             this.jsonWriter.open();
             this.jsonWriter.write(this.leaderboards);
             this.jsonWriter.close();
-            // System.out.println("Saving Success!"); todo
+            this.menuPanel.setBottomTextField("Successfully saved your high scores!");
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
@@ -168,6 +175,7 @@ public class GameGUI extends Canvas {
 
     public void setPlayerBasedOnName(String name) {
         this.player = new Player(name);
+        this.name = name;
         this.leaderboards.addToAllLeaderboards(player);
     }
 
