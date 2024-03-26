@@ -8,6 +8,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
+import java.lang.reflect.InvocationTargetException;
 
 public class WordRecollectionPanel extends JPanel implements ActionListener {
 
@@ -120,6 +121,11 @@ public class WordRecollectionPanel extends JPanel implements ActionListener {
 
     private void gameOver() {
         this.gettingDifficulty = true;
+        try {
+            this.gameGUI.getLeaderboards().addPlayerToLeaderboard(this.gameGUI.getPlayer(), this.wordRecollectionGame);
+        } catch (InvocationTargetException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
         this.gameGUI.showFrameByString(gameGUI.getTitleMenu());
     }
 

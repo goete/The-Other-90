@@ -26,6 +26,15 @@
       "name": "John",
       "Sum Elimination Hard": 0,
       "Word Recollection Medium": 0
+    },
+    {
+      "Sum Elimination Easy": 0,
+      "Word Recollection Hard": 0,
+      "Sum Elimination Medium": 0,
+      "Word Recollection Easy": 10,
+      "name": "Ethan",
+      "Sum Elimination Hard": 0,
+      "Word Recollection Medium": 0
     }
   ]
 }
