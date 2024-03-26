@@ -135,13 +135,26 @@ public class WordRecollectionPanel extends JPanel implements ActionListener {
             e.printStackTrace();
         }
         this.gameGUI.showFrameByString(gameGUI.getTitleMenu());
-        String hold = "You scored: "
-                + this.wordRecollectionGame.getCurrentScore()
-                + "\n"
+        String hold = "You scored: " + this.wordRecollectionGame.getCurrentScore() + "\n"
                 + "The words you saw throughout the game are: \n"
-                + this.wordRecollectionGame.getWordsFound().toString();
+                + breakUpTheWordsByLines(this.wordRecollectionGame.getWordsFound().toString());
         System.out.println(hold);
         this.gameGUI.getMenuPanel().setBottomTextField(hold);
+    }
+
+    private String breakUpTheWordsByLines(String text) {
+        StringBuilder answer = new StringBuilder();
+        int counter = 0;
+        for (String line : text.split(",")) {
+            if (counter >= 7) {
+                counter = 0;
+                answer.append("\n");
+            }
+            counter++;
+            answer.append(line);
+            answer.append(",");
+        }
+        return answer.toString();
     }
 
     private void paintBackArrowButton() {

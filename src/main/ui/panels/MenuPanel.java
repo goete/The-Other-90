@@ -82,8 +82,9 @@ public class MenuPanel extends JPanel implements ActionListener {
 
     private void paintTextField(Graphics graphics) {
         graphics.setColor(Color.BLACK);
+        graphics.setFont(new Font("MonoLisa", Font.PLAIN, 15));
+        this.drawStringWithLineBreaks(graphics, this.bottomText, 0, 500);
         graphics.setFont(new Font("MonoLisa", Font.PLAIN, 27));
-        this.drawStringWithLineBreaks(graphics, this.bottomText, 0, 550);
         graphics.drawString("The Other 90", 210, 40);
     }
 
