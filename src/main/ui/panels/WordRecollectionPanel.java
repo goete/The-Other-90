@@ -22,6 +22,7 @@ public class WordRecollectionPanel extends JPanel implements ActionListener {
     private JButton easyButton;
     private JButton mediumButton;
     private JButton hardButton;
+    private JButton backButton;
     private GameGUI gameGUI;
     private String displayWord;
 
@@ -53,6 +54,11 @@ public class WordRecollectionPanel extends JPanel implements ActionListener {
         this.easyButton.setLocation(50, 250);
         this.mediumButton.setLocation(200 + 25, 250);
         this.hardButton.setLocation(350 + 25 * 2, 250);
+
+        this.backButton = new JButton("⮪");
+        this.backButton.addActionListener(this);
+        this.backButton.setSize(50, 50);
+        this.backButton.setLocation(0, 0);
     }
 
     private void setUpButtonsGame() {
@@ -76,6 +82,7 @@ public class WordRecollectionPanel extends JPanel implements ActionListener {
         graphics.fillRect(0, 0, width, height);
         if (gettingDifficulty) {
             paintDifficultyButtons(graphics);
+            paintBackArrowButton();
         } else {
             paintGameButtons(graphics);
             paintRuleText(graphics);
@@ -129,6 +136,10 @@ public class WordRecollectionPanel extends JPanel implements ActionListener {
         this.gameGUI.showFrameByString(gameGUI.getTitleMenu());
     }
 
+    private void paintBackArrowButton() {
+        this.add(this.backButton);
+    }
+
 
     @Override
     @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
@@ -157,6 +168,8 @@ public class WordRecollectionPanel extends JPanel implements ActionListener {
                 } else {
                     gameOver();
                 }
+            } else if (e.getSource() == this.backButton) {
+                this.gameGUI.showFrameByString(gameGUI.getTitleMenu());
             }
         } catch (Exception ee) {
             ee.printStackTrace();
