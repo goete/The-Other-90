@@ -18,6 +18,9 @@ public class MenuPanel extends JPanel implements ActionListener {
     private final JButton savingButton;
     private final ArrayList<JButton> allTheButtons;
     private final GameGUI game;
+    private final int buttonHeight;
+    private Image topLogo;
+    private String bottomText;
 
     // Citation: https://github.com/goete/Scrabble
     public MenuPanel(int width, int height, GameGUI game) {
@@ -37,8 +40,19 @@ public class MenuPanel extends JPanel implements ActionListener {
         this.allTheButtons.add(this.highScoresButton);
         this.allTheButtons.add(this.savingButton);
         this.allTheButtons.add(this.loadingButton);
+        this.buttonHeight = (this.height - 50 - 300) / this.allTheButtons.size();
+        this.bottomText = "Please work";
         this.setUpButtons();
+        this.setUpBottomTextAndLogo();
         this.game.repaint();
+    }
+
+    private void setUpBottomTextAndLogo() {
+        this.topLogo = this.game.getCornerLogo().getScaledInstance(50, 50, 0);
+    }
+
+    public void setBottomTextField(String text) {
+        this.bottomText = text;
     }
 
     private void setUpButtons() {
@@ -46,8 +60,8 @@ public class MenuPanel extends JPanel implements ActionListener {
         for (JButton button : this.allTheButtons) {
             button.setAlignmentX(Component.CENTER_ALIGNMENT);
             button.addActionListener(this);
-            button.setSize(this.width, (this.height - 50) / this.allTheButtons.size());
-            button.setLocation(0, ((this.height - 50) / this.allTheButtons.size()) * counter + 50);
+            button.setSize(this.width, this.buttonHeight);
+            button.setLocation(0, this.buttonHeight * counter + 50);
             counter++;
         }
     }
@@ -59,6 +73,19 @@ public class MenuPanel extends JPanel implements ActionListener {
         graphics.clearRect(0, 0, width, height);
         paintButtons();
         // paintShuffleHandButton(graphics);
+        paintTextField(graphics);
+        paintLogo(graphics);
+    }
+
+    private void paintLogo(Graphics graphics) {
+        graphics.drawImage(this.topLogo, 0, 0, this);
+    }
+
+    private void paintTextField(Graphics graphics) {
+        graphics.setColor(Color.BLACK);
+        graphics.setFont(new Font("MonoLisa", Font.PLAIN, 27));
+        graphics.drawString(this.bottomText, 0, 550);
+        graphics.drawString("The Other 90", 210, 40);
     }
 
     private void paintButtons() {
