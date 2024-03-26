@@ -108,14 +108,15 @@ public class MenuPanel extends JPanel implements ActionListener {
         if (e.getSource() == this.sumEliminationButton) {
             game.showFrameByString(this.game.getTitleSum());
         } else if (e.getSource() == this.wordRecollectionButton) {
-            // game.getWordRecollectionPanel().startingNewGame();
             game.showFrameByString(this.game.getTitleWord());
         } else if (e.getSource() == this.highScoresButton) {
             game.showFrameByString(this.game.getTitleLeaderboard());
         } else if (e.getSource() == this.loadingButton) {
             game.loadHighScores();
+            this.repaint();
         } else if (e.getSource() == this.savingButton) {
             game.saveHighScores();
+            this.repaint();
         }
 
     }

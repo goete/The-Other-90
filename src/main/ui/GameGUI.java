@@ -119,18 +119,19 @@ public class GameGUI extends Canvas {
     public void loadHighScores() {
         try {
             this.leaderboards = this.jsonReaderLeaderboards.readLeaderboards();
-            this.menuPanel.setBottomTextField("Loading high scores a success!");
+            this.menuPanel.setBottomTextField(" Loading high scores a success!");
             potentiallyLoggingIn();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        this.repaint();
     }
 
     private void potentiallyLoggingIn() {
         for (Player p : this.leaderboards.getAllPlayers()) {
             if (p.getName().equals(this.name)) {
                 this.player = p;
-                this.menuPanel.setBottomTextField("Loading high scores a success! \n "
+                this.menuPanel.setBottomTextField(" Loading high scores a success! \n "
                         + "Successfully logged you in as " + this.player.getName());
                 this.player.setSumEliminationEasyHighScore(p.getSumEliminationEasyHighScore());
                 this.player.setSumEliminationMediumHighScore(p.getSumEliminationMediumHighScore());
@@ -154,6 +155,7 @@ public class GameGUI extends Canvas {
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
+        this.repaint();
     }
 
     @Override
