@@ -60,7 +60,6 @@ public class GameGUI extends Canvas {
         overallFrame.setVisible(true);
         overallFrame.setResizable(false);
         showFrameByString(startingScreenName);
-        centreOnScreen();
         overallFrame.repaint();
         setVisible(true);
         overallFrame.repaint();
@@ -90,16 +89,6 @@ public class GameGUI extends Canvas {
         }
         return bufferedImage;
     }
-
-
-    // Centres frame on desktop
-    // modifies: this
-    // effects:  location of frame is set so frame is centred on desktop
-    private void centreOnScreen() {
-        Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
-        setLocation((screen.width - getWidth()) / 2, (screen.height - getHeight()) / 2);
-    }
-
 
     private void addingPanels() {
         cards.add(menuPanel, titleMenu);
@@ -141,7 +130,7 @@ public class GameGUI extends Canvas {
         for (Player p : this.leaderboards.getAllPlayers()) {
             if (p.getName().equals(this.name)) {
                 this.player = p;
-                // TODO: System.out.println("Successfully logged you in as " + this.player.getName());
+                System.out.println("Successfully logged you in as " + this.player.getName());
                 break;
             }
         }
@@ -221,8 +210,14 @@ public class GameGUI extends Canvas {
                 e.printStackTrace();
             }
         }
+    }
 
+    public Leaderboards getLeaderboards() {
+        return leaderboards;
+    }
 
+    public Player getPlayer() {
+        return this.player;
     }
 
     public String getTitleMenu() {
