@@ -41,7 +41,7 @@ public class MenuPanel extends JPanel implements ActionListener {
         this.allTheButtons.add(this.savingButton);
         this.allTheButtons.add(this.loadingButton);
         this.buttonHeight = (this.height - 50 - 300) / this.allTheButtons.size();
-        this.bottomText = "Please work";
+        this.bottomText = "Welcome!";
         this.setUpButtons();
         this.setUpBottomTextAndLogo();
         this.game.repaint();
@@ -72,7 +72,6 @@ public class MenuPanel extends JPanel implements ActionListener {
         graphics.setColor(Color.WHITE);
         graphics.clearRect(0, 0, width, height);
         paintButtons();
-        // paintShuffleHandButton(graphics);
         paintTextField(graphics);
         paintLogo(graphics);
     }
@@ -84,8 +83,15 @@ public class MenuPanel extends JPanel implements ActionListener {
     private void paintTextField(Graphics graphics) {
         graphics.setColor(Color.BLACK);
         graphics.setFont(new Font("MonoLisa", Font.PLAIN, 27));
-        graphics.drawString(this.bottomText, 0, 550);
+        this.drawStringWithLineBreaks(graphics, this.bottomText, 0, 550);
         graphics.drawString("The Other 90", 210, 40);
+    }
+
+
+    private void drawStringWithLineBreaks(Graphics g, String text, int x, int y) {
+        for (String line : text.split("\n")) {
+            g.drawString(line, x, y += g.getFontMetrics().getHeight());
+        }
     }
 
     private void paintButtons() {

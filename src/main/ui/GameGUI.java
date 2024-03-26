@@ -25,7 +25,7 @@ public class GameGUI extends Canvas {
     private final String titleSum = "Sum Recollection";
     private final String titleLeaderboard = "Leaderboards";
     private final String titleSplash = "Loading";
-    private final String startingScreenName = titleSplash; // TODO: CHANGE TO SPLASH
+    private final String startingScreenName = titleSplash;
     private MenuPanel menuPanel;
     private LeaderboardPanel leaderboardPanel;
     private SumEliminationPanel sumEliminationPanel;
@@ -222,5 +222,9 @@ public class GameGUI extends Canvas {
 
     public String getTitleMenu() {
         return titleMenu;
+    }
+
+    public MenuPanel getMenuPanel() {
+        return this.menuPanel;
     }
 }

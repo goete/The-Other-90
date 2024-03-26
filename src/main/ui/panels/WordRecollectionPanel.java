@@ -124,6 +124,7 @@ public class WordRecollectionPanel extends JPanel implements ActionListener {
         this.remove(this.easyButton);
         this.remove(this.mediumButton);
         this.remove(this.hardButton);
+        this.remove(this.backButton);
     }
 
     private void gameOver() {
@@ -134,6 +135,13 @@ public class WordRecollectionPanel extends JPanel implements ActionListener {
             e.printStackTrace();
         }
         this.gameGUI.showFrameByString(gameGUI.getTitleMenu());
+        String hold = "You scored: "
+                + this.wordRecollectionGame.getCurrentScore()
+                + "\n"
+                + "The words you saw throughout the game are: \n"
+                + this.wordRecollectionGame.getWordsFound().toString();
+        System.out.println(hold);
+        this.gameGUI.getMenuPanel().setBottomTextField(hold);
     }
 
     private void paintBackArrowButton() {
