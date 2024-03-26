@@ -119,14 +119,4 @@ public class MenuPanel extends JPanel implements ActionListener {
         }
 
     }
-
-    // Reference for using graphics
-    // Citation: https://github.com/goete/Scrabble
-//    private void paintShuffleHandButton(final Graphics graphics) {
-//        graphics.setColor(Color.WHITE);
-//        graphics.fillOval(93, 530, 20, 20);
-//        graphics.setFont(new Font("TimesRoman", Font.PLAIN, 18));
-//        graphics.setColor(Color.BLACK);
-//        graphics.drawString("⇄", 95, 547);
-//    }
 }
