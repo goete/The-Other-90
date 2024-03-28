@@ -71,9 +71,9 @@ public class LeaderboardPanel extends JPanel implements ActionListener {
     // MODIFIES: this
     // EFFECTS: sets up buttons and text field for first screen
     private void setUpOtherScreenOneButtons() {
-        this.backButton = new JButton("⮪");
+        this.backButton = new JButton("back");
         this.backButton.addActionListener(this);
-        this.backButton.setSize(50, 50);
+        this.backButton.setSize(65, 50);
         this.backButton.setLocation(0, 0);
 
         this.numberOfDesiredPlayersTextField = new JTextField();
@@ -81,10 +81,10 @@ public class LeaderboardPanel extends JPanel implements ActionListener {
         this.numberOfDesiredPlayersTextField.setSize(50, 50);
         this.numberOfDesiredPlayersTextField.addActionListener(this);
 
-        this.goAndShowButton = new JButton("✓");
+        this.goAndShowButton = new JButton("GO!");
         this.goAndShowButton.addActionListener(this);
-        this.goAndShowButton.setLocation(275, 650);
-        this.goAndShowButton.setSize(50, 50);
+        this.goAndShowButton.setLocation(270, 650);
+        this.goAndShowButton.setSize(60, 50);
     }
 
     // MODIFIES: this

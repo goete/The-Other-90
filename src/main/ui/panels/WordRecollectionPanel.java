@@ -56,9 +56,9 @@ public class WordRecollectionPanel extends JPanel implements ActionListener {
         this.mediumButton.setLocation(200 + 25, 250);
         this.hardButton.setLocation(350 + 25 * 2, 250);
 
-        this.backButton = new JButton("⮪");
+        this.backButton = new JButton("back");
         this.backButton.addActionListener(this);
-        this.backButton.setSize(50, 50);
+        this.backButton.setSize(65, 50);
         this.backButton.setLocation(0, 0);
     }
 
