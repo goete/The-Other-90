@@ -54,4 +54,12 @@ tagline in the image . Spell all the words correctly and don't omit any.
 9. As a user, I want to be able to reload my data when opening the application.
 10. As a user, I want to be able to save my high scores.
 
+# Instructions for Grader
 
+NOTE: Load the highscores before saving in order to make the "adding multiple Xs to a Y" more clear.
+
+- You can generate the first required action related to the user story "adding multiple Xs to a Y" by running the application multiple times, loading then saving your account
+- You can generate the second required action related to the user story "adding multiple Xs to a Y" by navigating through the leaderboards 
+- You can locate my visual component by looking at the loading screen or top left on the main menu
+- You can save the state of my application by hitting the save button on the main menu
+- You can reload the state of my application by hitting the load button on the main menu
