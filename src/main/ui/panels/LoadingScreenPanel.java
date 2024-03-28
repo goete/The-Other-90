@@ -10,17 +10,13 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 
+// manages the opening screen panel
 public class LoadingScreenPanel extends JPanel implements ActionListener {
 
     private final int height;
     private final int width;
     private Image mainLogo;
     private final String mainLogoFilePath = "data/MainLoadingImage.jpg";
-    private JTextField userEnteringNameTextField;
-    private JPanel topPanel;
-    private JPanel bottomPanel;
-    private JPanel eastPanel;
-    private JPanel westPanel;
     private GameGUI game;
     private JTextField textField;
     private Image otherLogo;
@@ -41,6 +37,8 @@ public class LoadingScreenPanel extends JPanel implements ActionListener {
         this.otherLogo = game.getCornerLogo().getScaledInstance(280, 280, 0);
     }
 
+    // MODIFIES: this
+    // EFFECTS: paints the stuff to the screen
     @Override
     public void paintComponent(final Graphics graphics) {
         graphics.setColor(Color.LIGHT_GRAY);
@@ -54,6 +52,7 @@ public class LoadingScreenPanel extends JPanel implements ActionListener {
     }
 
 
+    // EFFECTS: loads the given image through file path
     private Image loadImage(String filename) {
         BufferedImage image = null;
         try {
@@ -68,6 +67,8 @@ public class LoadingScreenPanel extends JPanel implements ActionListener {
         return mainLogo;
     }
 
+    // MODIFIES: this, gameGUI
+    // EFFECTS: manages the button pressing and calls method to change the screen after logging in
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == this.textField) {

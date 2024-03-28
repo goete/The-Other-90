@@ -5,15 +5,13 @@ import model.Player;
 import ui.GameGUI;
 
 import javax.swing.*;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
-import java.util.Objects;
 
+// Leaderboard showcasing panel
 public class LeaderboardPanel extends JPanel implements ActionListener {
 
     private final int height;
@@ -52,6 +50,7 @@ public class LeaderboardPanel extends JPanel implements ActionListener {
         this.errorText = "";
     }
 
+    // EFFECTS: calls the methods to set up specified buttons
     private void setUpButtons() {
         this.setUpGameButtons();
         this.setUpDifficultyButtons();
@@ -60,6 +59,8 @@ public class LeaderboardPanel extends JPanel implements ActionListener {
         this.setUpContinueButton();
     }
 
+    // MODIFIES: this
+    // EFFECTS: sets up the continue button
     private void setUpContinueButton() {
         this.continueButton = new JButton("Continue");
         this.continueButton.setSize(200, 50);
@@ -67,6 +68,8 @@ public class LeaderboardPanel extends JPanel implements ActionListener {
         this.continueButton.addActionListener(this);
     }
 
+    // MODIFIES: this
+    // EFFECTS: sets up buttons and text field for first screen
     private void setUpOtherScreenOneButtons() {
         this.backButton = new JButton("⮪");
         this.backButton.addActionListener(this);
@@ -84,11 +87,15 @@ public class LeaderboardPanel extends JPanel implements ActionListener {
         this.goAndShowButton.setSize(50, 50);
     }
 
+    // MODIFIES: this
+    // EFFECTS: updates the leaderboard
     public void resetLeaderboardAfterLoad(Leaderboards l) {
         this.leaderboards = l;
     }
 
 
+    // MODIFIES: this
+    // EFFECTS: sets up the buttons for choosing the game
     private void setUpGameButtons() {
         this.buttonGameGroup = new ButtonGroup();
         this.wordRecollectionButton = new JRadioButton("Word Recollection");
@@ -112,6 +119,8 @@ public class LeaderboardPanel extends JPanel implements ActionListener {
         wordRecollectionButton.setLocation(width / 2 + 25, 250);
     }
 
+    // MODIFIES: this
+    // EFFECTS: sets up the buttons for choosing the difficulty buttons
     private void setUpDifficultyButtons() {
         this.buttonDifficultyGroup = new ButtonGroup();
         this.easyButton = new JRadioButton("Easy");
@@ -141,6 +150,8 @@ public class LeaderboardPanel extends JPanel implements ActionListener {
 
     }
 
+    // MODIFIES: this
+    // EFFECTS: calls the correct methods to paint the desired screen based on the situation
     @Override
     public void paintComponent(final Graphics graphics) {
         graphics.setColor(Color.LIGHT_GRAY);
@@ -156,18 +167,24 @@ public class LeaderboardPanel extends JPanel implements ActionListener {
 
     }
 
+    // MODIFIES: this
+    // EFFECTS: puts the leaderboard on the screen
     private void paintCorrectLeaderboard(Graphics graphics) {
         graphics.setFont(new Font("MonoLisa", Font.PLAIN, 15));
         graphics.setColor(Color.BLACK);
         drawStringWithLineBreaks(graphics, this.leaderboardText, 50, 50);
     }
 
+    // MODIFIES: this
+    // EFFECTS: draws the given text while respecting the line breaks
     private void drawStringWithLineBreaks(Graphics g, String text, int x, int y) {
         for (String line : text.split("\n")) {
             g.drawString(line, x, y += g.getFontMetrics().getHeight());
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: puts the continue button on the screen, removing the previous screens buttons
     private void paintContinueButton(Graphics graphics) {
         this.add(this.continueButton);
 
@@ -180,6 +197,8 @@ public class LeaderboardPanel extends JPanel implements ActionListener {
         this.remove(numberOfDesiredPlayersTextField);
     }
 
+    // MODIFIES: this
+    // EFFECTS: puts the text on the screen
     private void paintGettingTexts(Graphics graphics) {
         graphics.setColor(Color.BLACK);
         graphics.setFont(new Font("MonoLisa", Font.BOLD, 18));
@@ -196,6 +215,8 @@ public class LeaderboardPanel extends JPanel implements ActionListener {
 
     }
 
+    // MODIFIES: this
+    // EFFECTS: puts the question buttons on the screen, removing the other screens buttons
     private void paintQuestionButtons(Graphics graphics) {
         this.add(easyButton);
         this.add(mediumButton);
@@ -210,6 +231,8 @@ public class LeaderboardPanel extends JPanel implements ActionListener {
         this.remove(this.continueButton);
     }
 
+    // MODIFIES: this
+    // EFFECTS: controls the actions after buttons are pressed
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == this.goAndShowButton) {
@@ -259,12 +282,15 @@ public class LeaderboardPanel extends JPanel implements ActionListener {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: switches the screen, resetting the errors
     private void switchAndShowDesired() {
         this.gettingInformation = !this.gettingInformation;
         this.errorText = "";
         repaint();
     }
 
+    // EFFECTS: makes sure that the given text is all numbers
     private boolean isAllNumbers(String text) {
         return text.matches("[0-9]+");
     }

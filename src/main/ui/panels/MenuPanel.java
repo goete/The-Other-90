@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+// Main menu panel
 public class MenuPanel extends JPanel implements ActionListener {
     private final int height;
     private final int width;
@@ -41,13 +42,15 @@ public class MenuPanel extends JPanel implements ActionListener {
         this.allTheButtons.add(this.savingButton);
         this.allTheButtons.add(this.loadingButton);
         this.buttonHeight = (this.height - 50 - 300) / this.allTheButtons.size();
-        this.bottomText = "Welcome!";
         this.setUpButtons();
         this.setUpBottomTextAndLogo();
         this.game.repaint();
     }
 
+    // MODIFIES: this
+    // EFFECTS: sets up the bottom text and the corner logo
     private void setUpBottomTextAndLogo() {
+        this.bottomText = "Welcome!";
         this.topLogo = this.game.getCornerLogo().getScaledInstance(50, 50, 0);
     }
 
@@ -55,6 +58,8 @@ public class MenuPanel extends JPanel implements ActionListener {
         this.bottomText = text;
     }
 
+    // MODIFIES: this
+    // EFFECTS: basic button set up
     private void setUpButtons() {
         int counter = 0;
         for (JButton button : this.allTheButtons) {
@@ -67,6 +72,9 @@ public class MenuPanel extends JPanel implements ActionListener {
     }
 
 
+    // MODIFIES: this
+    // EFFECTS: resets the background to paint over everything
+    //          then calls the rest of the painting methods
     @Override
     public void paintComponent(final Graphics graphics) {
         graphics.setColor(Color.WHITE);
@@ -76,10 +84,14 @@ public class MenuPanel extends JPanel implements ActionListener {
         paintLogo(graphics);
     }
 
+    // MODIFIES: this
+    // EFFECTS: paints the logo into the corner of the screen
     private void paintLogo(Graphics graphics) {
         graphics.drawImage(this.topLogo, 0, 0, this);
     }
 
+    // MODIFIES: this
+    // EFFECTS: paints the text fields
     private void paintTextField(Graphics graphics) {
         graphics.setColor(Color.BLACK);
         graphics.setFont(new Font("MonoLisa", Font.PLAIN, 15));
@@ -89,12 +101,16 @@ public class MenuPanel extends JPanel implements ActionListener {
     }
 
 
+    // MODIFIES: this
+    // EFFECTS: draws strings correctly formatted with their line breaks
     private void drawStringWithLineBreaks(Graphics g, String text, int x, int y) {
         for (String line : text.split("\n")) {
             g.drawString(line, x, y += g.getFontMetrics().getHeight());
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds the buttons to the screen
     private void paintButtons() {
         this.add(this.sumEliminationButton);
         this.add(this.wordRecollectionButton);
@@ -103,6 +119,8 @@ public class MenuPanel extends JPanel implements ActionListener {
         this.add(this.loadingButton);
     }
 
+    // MODIFIES: this, gameGUI
+    // EFFECTS: changes to the correct screen or takes the correct action on button press
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == this.sumEliminationButton) {

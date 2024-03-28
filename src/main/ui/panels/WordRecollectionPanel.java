@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.lang.reflect.InvocationTargetException;
 
+// manages the Word Recollection game and respective panel
 public class WordRecollectionPanel extends JPanel implements ActionListener {
     private final int height;
     private final int width;
@@ -36,6 +37,8 @@ public class WordRecollectionPanel extends JPanel implements ActionListener {
         this.displayWord = null;
     }
 
+    // MODIFIES: this
+    // EFFECTS: sets up all the buttons for choosing which difficulty is desired
     private void setUpButtonsDifficulty() {
         this.easyButton = new JButton("Easy");
         this.mediumButton = new JButton("Medium");
@@ -59,6 +62,8 @@ public class WordRecollectionPanel extends JPanel implements ActionListener {
         this.backButton.setLocation(0, 0);
     }
 
+    // MODIFIES: this
+    // EFFECTS: sets up the buttons for once the game starts running
     private void setUpButtonsGame() {
         this.seenButton = new JButton("YES");
         this.haveNotSeenButton = new JButton("NO");
@@ -73,6 +78,8 @@ public class WordRecollectionPanel extends JPanel implements ActionListener {
         this.haveNotSeenButton.setLocation(350, 250);
     }
 
+    // MODIFIES: this
+    // EFFECTS: paints over the screen then calls the correct methods based on the game status
     @Override
     public void paintComponent(final Graphics graphics) {
         graphics.setColor(Color.LIGHT_GRAY);
@@ -89,6 +96,8 @@ public class WordRecollectionPanel extends JPanel implements ActionListener {
 
     }
 
+    // MODIFIES: this
+    // EFFECTS: controls painting the current state of the game to the screen
     private void paintGameText(Graphics graphics) {
         if (displayWord == null) {
             displayWord = this.wordRecollectionGame.getNextWord();
@@ -97,6 +106,8 @@ public class WordRecollectionPanel extends JPanel implements ActionListener {
         graphics.drawString("Have you seen: " + displayWord, 10, 30);
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds the difficulty buttons, removing the game buttons
     private void paintDifficultyButtons(Graphics graphics) {
         this.add(this.easyButton);
         this.add(this.mediumButton);
@@ -106,6 +117,8 @@ public class WordRecollectionPanel extends JPanel implements ActionListener {
         this.remove(this.seenButton);
     }
 
+    // MODIFIES: this
+    // EFFECTS: paints the rules to the screen
     private void paintRuleText(Graphics graphics) {
         graphics.setColor(Color.BLACK);
         graphics.setFont(new Font("MonoLisa", Font.BOLD, 27));
@@ -115,6 +128,8 @@ public class WordRecollectionPanel extends JPanel implements ActionListener {
         graphics.drawString("Otherwise, click no", 50, 575);
     }
 
+    // MODIFIES: this
+    // EFFECTS: puts the game buttons on the screen and removes the difficulty buttons
     private void paintGameButtons(Graphics graphics) {
         this.add(this.haveNotSeenButton);
         this.add(this.seenButton);
@@ -125,6 +140,9 @@ public class WordRecollectionPanel extends JPanel implements ActionListener {
         this.remove(this.backButton);
     }
 
+    // MODIFIES: this, gameGUI
+    // EFFECTS: switches the screen back to the main menu
+    //          sets the text at the bottom to show the score
     private void gameOver() {
         this.gettingDifficulty = true;
         try {
@@ -136,10 +154,10 @@ public class WordRecollectionPanel extends JPanel implements ActionListener {
         String hold = "You scored: " + this.wordRecollectionGame.getCurrentScore() + "\n"
                 + "The words you saw throughout the game are: \n"
                 + breakUpTheWordsByLines(this.wordRecollectionGame.getWordsFound().toString());
-        System.out.println(hold);
         this.gameGUI.getMenuPanel().setBottomTextField(hold);
     }
 
+    // EFFECTS: breaking up the given string into 7 word chunks
     private String breakUpTheWordsByLines(String text) {
         StringBuilder answer = new StringBuilder();
         int counter = 0;
@@ -155,11 +173,15 @@ public class WordRecollectionPanel extends JPanel implements ActionListener {
         return answer.toString();
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds the back button to the screen
     private void paintBackArrowButton() {
         this.add(this.backButton);
     }
 
 
+    // MODIFIES: this
+    // EFFECTS: manages the button pressing and calls the correct methods
     @Override
     @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
     public void actionPerformed(ActionEvent e) {

@@ -72,6 +72,8 @@ public class GameGUI extends Canvas {
         return cornerLogo;
     }
 
+    // MODIFIES: this
+    // EFFECTS: sets up mouse listener (currently unused but will need once sum elimination is implemented)
     private void settingUpMouseListener() {
         mouse = new Mouse();
         cards.addMouseListener(mouse);
@@ -79,6 +81,7 @@ public class GameGUI extends Canvas {
         cards.addMouseWheelListener(mouse);
     }
 
+    // EFFECTS: loads in images based on the given file path
     private BufferedImage loadImage(String filename) {
         BufferedImage bufferedImage = null;
         try {
@@ -89,6 +92,8 @@ public class GameGUI extends Canvas {
         return bufferedImage;
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds the panels to the CardLayout
     private void addingPanels() {
         cards.add(menuPanel, titleMenu);
         cards.add(sumEliminationPanel, titleSum);
@@ -97,6 +102,8 @@ public class GameGUI extends Canvas {
         cards.add(loadingScreenPanel, titleSplash);
     }
 
+    // MODIFIES: this
+    // EFFECTS: sets up the panels and the screen
     private void setUpPanels() {
         this.menuPanel = new MenuPanel(width, height, this);
         this.sumEliminationPanel = new SumEliminationPanel(width, height);
@@ -108,6 +115,9 @@ public class GameGUI extends Canvas {
         overallFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
+    // REQUIRES: cards contains a frame gettable from frameTitle
+    // MODIFIES: this
+    // EFFECTS: shows the correct frame based on the given string
     public void showFrameByString(String frameTitle) {
         CardLayout cl = (CardLayout) (cards.getLayout());
         cl.show(cards, frameTitle);
@@ -115,6 +125,8 @@ public class GameGUI extends Canvas {
     }
 
 
+    // MODIFIES: this
+    // EFFECTS: loads in the previous high scores
     public void loadHighScores() {
         try {
             this.leaderboards = this.jsonReaderLeaderboards.readLeaderboards();
@@ -127,12 +139,14 @@ public class GameGUI extends Canvas {
         this.repaint();
     }
 
+    // MODIFIES: this
+    // EFFECTS: after loading, if current player name is one in the leaderboard, it logs them back in
     private void potentiallyLoggingIn() {
         for (Player p : this.leaderboards.getAllPlayers()) {
             if (p.getName().equals(this.name)) {
                 this.player = p;
                 this.menuPanel.setBottomTextField(" Loading high scores a success! \n "
-                        + "Successfully logged you in as " + this.player.getName());
+                        + "Welcome back " + this.player.getName() + "!");
                 this.player.setSumEliminationEasyHighScore(p.getSumEliminationEasyHighScore());
                 this.player.setSumEliminationMediumHighScore(p.getSumEliminationMediumHighScore());
                 this.player.setSumEliminationHardHighScore(p.getSumEliminationHardHighScore());
@@ -145,7 +159,8 @@ public class GameGUI extends Canvas {
 
     }
 
-
+    // MODIFIES: this
+    // EFFECTS: writes the leaderboard to the file to save
     public void saveHighScores() {
         try {
             this.jsonWriter.open();
@@ -158,23 +173,30 @@ public class GameGUI extends Canvas {
         this.repaint();
     }
 
+    // MODIFIES: this
+    // EFFECTS: repaints the screen
     @Override
     public void repaint() {
         super.repaint();
-        this.repaintingCurrentFrame(super.getGraphics());
+        this.repaintingCurrentPanel(super.getGraphics());
     }
 
-    public void repaintingCurrentFrame(Graphics g) {
+    // MODIFIES: this
+    // EFFECTS: repaints the current panel
+    public void repaintingCurrentPanel(Graphics g) {
         CardLayout cl = (CardLayout) (cards.getLayout());
         cl.show(cards, this.currentFrame);
         super.repaint();
     }
 
+    // EFFECTS: updates the screen and loop
     public void update() {
         repaint();
         loop();
     }
 
+    // MODIFIES: this
+    // EFFECTS: sets the current player based on the given name
     public void setPlayerBasedOnName(String name) {
         this.player = new Player(name);
         this.name = name;
@@ -202,6 +224,9 @@ public class GameGUI extends Canvas {
         return wordRecollectionPanel;
     }
 
+    // MODIFIES: this
+    // EFFECTS: game loop logic
+    // Citation: https://github.com/goete/Scrabble
     public void loop() {
         long lastLoopTime = System.currentTimeMillis();
         while (overallFrame.isActive()) {

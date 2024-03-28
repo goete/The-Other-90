@@ -3,6 +3,7 @@ package ui.panels;
 import javax.swing.*;
 import java.awt.*;
 
+// panel for Sum Elimination game
 public class SumEliminationPanel extends JPanel {
 
     private final int height;
