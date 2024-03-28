@@ -56,7 +56,7 @@ tagline in the image . Spell all the words correctly and don't omit any.
 
 # Instructions for Grader
 
-NOTE: Load the highscores before saving in order to make the "adding multiple Xs to a Y" more clear.
+NOTE: Load the high scores before saving in order to make the "adding multiple Xs to a Y" more clear.
 
 - You can generate the first required action related to the user story "adding multiple Xs to a Y" by running the application multiple times, loading then saving your account
 - You can generate the second required action related to the user story "adding multiple Xs to a Y" by navigating through the leaderboards 
