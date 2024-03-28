@@ -16,7 +16,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class GameGUI extends Canvas {
-
     private final int fps = 60;
     private final int width = 600;
     private final int height = 800;
@@ -47,6 +46,7 @@ public class GameGUI extends Canvas {
 
     public GameGUI() {
         this.cornerLogo = loadImage(topCornerFilePath);
+        this.leaderboards = new Leaderboards();
         cards = new JPanel(new CardLayout());
         settingUpMouseListener();
         setUpPanels();
@@ -64,7 +64,6 @@ public class GameGUI extends Canvas {
         setVisible(true);
         overallFrame.repaint();
         this.setVisible(true);
-        this.leaderboards = new Leaderboards();
         jsonWriter = new JsonWriter("./data/Players.json");
         jsonReaderLeaderboards = new JsonReaderLeaderboards("./data/Players.json");
     }
@@ -102,7 +101,7 @@ public class GameGUI extends Canvas {
         this.menuPanel = new MenuPanel(width, height, this);
         this.sumEliminationPanel = new SumEliminationPanel(width, height);
         this.wordRecollectionPanel = new WordRecollectionPanel(width, height, this);
-        this.leaderboardPanel = new LeaderboardPanel(width, height);
+        this.leaderboardPanel = new LeaderboardPanel(width, height, this.leaderboards, this);
         this.loadingScreenPanel = new LoadingScreenPanel(width, height, this);
         overallFrame = new JFrame();
         overallFrame.setSize(600, 600);
@@ -121,6 +120,7 @@ public class GameGUI extends Canvas {
             this.leaderboards = this.jsonReaderLeaderboards.readLeaderboards();
             this.menuPanel.setBottomTextField(" Loading high scores a success!");
             potentiallyLoggingIn();
+            this.leaderboardPanel.resetLeaderboardAfterLoad(this.leaderboards);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
