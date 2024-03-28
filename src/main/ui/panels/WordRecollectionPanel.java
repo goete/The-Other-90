@@ -7,11 +7,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.FileNotFoundException;
 import java.lang.reflect.InvocationTargetException;
 
 public class WordRecollectionPanel extends JPanel implements ActionListener {
-
     private final int height;
     private final int width;
     private JButton seenButton;
