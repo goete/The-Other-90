@@ -68,25 +68,25 @@ NOTE: Load the high scores before saving in order to make the "adding multiple X
 
 # Phase 4: Task 2
 
-Sun Mar 31 19:56:40 PDT 2024
-Ethan was added to all Leaderboards
-Sun Mar 31 19:56:55 PDT 2024
-Leaderboards were loaded in from file
-Sun Mar 31 19:56:55 PDT 2024
-alice was added to all Leaderboards
-Sun Mar 31 19:56:55 PDT 2024
-Leo was added to all Leaderboards
-Sun Mar 31 19:56:55 PDT 2024
-John was added to all Leaderboards
-Sun Mar 31 19:56:55 PDT 2024
-Ethan was added to all Leaderboards
-Sun Mar 31 19:57:04 PDT 2024
-Ethan had their Word Recollection Hard score updated
-Sun Mar 31 19:57:08 PDT 2024
-Leaderboards were saved to file
-Sun Mar 31 19:57:15 PDT 2024
-Ethan had their Word Recollection Easy score updated
-Sun Mar 31 19:57:43 PDT 2024
-Ethan had their Word Recollection Medium score updated
-Sun Mar 31 19:58:05 PDT 2024
-Leaderboards were saved to file
+Sun Mar 31 19:56:40 PDT 2024 <br>
+Ethan was added to all Leaderboards <br>
+Sun Mar 31 19:56:55 PDT 2024 <br>
+Leaderboards were loaded in from file <br>
+Sun Mar 31 19:56:55 PDT 2024  <br>
+alice was added to all Leaderboards  <br>
+Sun Mar 31 19:56:55 PDT 2024 <br>
+Leo was added to all Leaderboards <br>
+Sun Mar 31 19:56:55 PDT 2024 <br>
+John was added to all Leaderboards  <br>
+Sun Mar 31 19:56:55 PDT 2024 <br>
+Ethan was added to all Leaderboards <br>
+Sun Mar 31 19:57:04 PDT 2024 <br>
+Ethan had their Word Recollection Hard score updated <br>
+Sun Mar 31 19:57:08 PDT 2024 <br>
+Leaderboards were saved to file <br> 
+Sun Mar 31 19:57:15 PDT 2024 <br> 
+Ethan had their Word Recollection Easy score updated <br>
+Sun Mar 31 19:57:43 PDT 2024 <br>
+Ethan had their Word Recollection Medium score updated <br>
+Sun Mar 31 19:58:05 PDT 2024 <br>
+Leaderboards were saved to file <br>
