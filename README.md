@@ -58,8 +58,35 @@ tagline in the image . Spell all the words correctly and don't omit any.
 
 NOTE: Load the high scores before saving in order to make the "adding multiple Xs to a Y" more clear.
 
-- You can generate the first required action related to the user story "adding multiple Xs to a Y" by running the application multiple times, loading then saving your account
-- You can generate the second required action related to the user story "adding multiple Xs to a Y" by navigating through the leaderboards 
+- You can generate the first required action related to the user story "adding multiple Xs to a Y" by running the
+  application multiple times, loading then saving your account
+- You can generate the second required action related to the user story "adding multiple Xs to a Y" by navigating
+  through the leaderboards
 - You can locate my visual component by looking at the loading screen or top left on the main menu
 - You can save the state of my application by hitting the save button on the main menu
 - You can reload the state of my application by hitting the load button on the main menu
+
+# Phase 4: Task 2
+
+Sun Mar 31 19:56:40 PDT 2024
+Ethan was added to all Leaderboards
+Sun Mar 31 19:56:55 PDT 2024
+Leaderboards were loaded in from file
+Sun Mar 31 19:56:55 PDT 2024
+alice was added to all Leaderboards
+Sun Mar 31 19:56:55 PDT 2024
+Leo was added to all Leaderboards
+Sun Mar 31 19:56:55 PDT 2024
+John was added to all Leaderboards
+Sun Mar 31 19:56:55 PDT 2024
+Ethan was added to all Leaderboards
+Sun Mar 31 19:57:04 PDT 2024
+Ethan had their Word Recollection Hard score updated
+Sun Mar 31 19:57:08 PDT 2024
+Leaderboards were saved to file
+Sun Mar 31 19:57:15 PDT 2024
+Ethan had their Word Recollection Easy score updated
+Sun Mar 31 19:57:43 PDT 2024
+Ethan had their Word Recollection Medium score updated
+Sun Mar 31 19:58:05 PDT 2024
+Leaderboards were saved to file
