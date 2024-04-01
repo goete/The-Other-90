@@ -279,7 +279,6 @@ public class GameGUI extends Canvas implements WindowListener, WindowFocusListen
 
     @Override
     public void windowClosing(WindowEvent e) {
-        System.out.println("YES");
         EventLog eventLog = EventLog.getInstance();
         for (Event event : eventLog) {
             System.out.println(event.toString());
