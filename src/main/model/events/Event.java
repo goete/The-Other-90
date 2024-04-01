@@ -7,7 +7,7 @@ import java.util.Date;
 // Taken from https://github.students.cs.ubc.ca/CPSC210/AlarmSystem as required by Phase 4 Task 2
 
 /**
- * Represents an alarm system event.
+ * Represents an event.
  */
 public class Event {
     private static final int HASH_CONSTANT = 13;
