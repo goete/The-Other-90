@@ -2,6 +2,8 @@ package ui;
 
 import model.Leaderboards;
 import model.Player;
+import model.events.EventLog;
+import model.events.Event;
 import persistence.JsonReaderLeaderboards;
 import persistence.JsonWriter;
 import ui.listeners.Mouse;
@@ -10,12 +12,18 @@ import ui.panels.*;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowFocusListener;
+import java.awt.event.WindowListener;
+import java.awt.event.WindowStateListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-public class GameGUI extends Canvas {
+import static com.sun.java.accessibility.util.AWTEventMonitor.addWindowListener;
+
+public class GameGUI extends Canvas implements WindowListener, WindowFocusListener, WindowStateListener {
     private final int fps = 60;
     private final int width = 600;
     private final int height = 800;
@@ -66,6 +74,7 @@ public class GameGUI extends Canvas {
         this.setVisible(true);
         jsonWriter = new JsonWriter("./data/Players.json");
         jsonReaderLeaderboards = new JsonReaderLeaderboards("./data/Players.json");
+        overallFrame.addWindowListener(this);
     }
 
     public BufferedImage getCornerLogo() {
@@ -261,5 +270,58 @@ public class GameGUI extends Canvas {
 
     public MenuPanel getMenuPanel() {
         return this.menuPanel;
+    }
+
+    @Override
+    public void windowOpened(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowClosing(WindowEvent e) {
+        System.out.println("YES");
+        EventLog eventLog = EventLog.getInstance();
+        for (Event event : eventLog) {
+            System.out.println(event.toString());
+        }
+    }
+
+    @Override
+    public void windowClosed(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowIconified(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowDeiconified(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowActivated(WindowEvent e) {
+    }
+
+    @Override
+    public void windowDeactivated(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowGainedFocus(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowLostFocus(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowStateChanged(WindowEvent e) {
+
     }
 }
