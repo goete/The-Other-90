@@ -1,5 +1,8 @@
 package model;
 
+import model.events.Event;
+import model.events.EventLog;
+
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -34,7 +37,6 @@ public class Leaderboard {
     // EFFECTS: returns the correct name for the setter method to be called on player
     private String convertToCorrectNameSetting() {
         return "set" + this.name.replace(" ", "") + "HighScore";
-
     }
 
     // EFFECTS: returns the size of the leaderboard
@@ -84,13 +86,17 @@ public class Leaderboard {
     // MODIFIES: this.storage
     // EFFECTS: returns a list of the top n players, or all players if n > board.size()
     //          in order such that the highest score is at index 0
+    //          Also logs the event
     public ArrayList<Player> getTopNPlayers(int n) throws InvocationTargetException, IllegalAccessException {
         this.storage = new ArrayList<>();
         if (n > this.board.size()) {
+            EventLog.getInstance().logEvent(new Event(
+                    this.name + "'s top " + this.board.size() + " players was accessed"));
             return this.getNPlayersRecursion(this.board.size(), (ArrayList<Player>) this.board.clone(), this.storage);
         } else {
+            EventLog.getInstance().logEvent(new Event(
+                    this.name + "'s top " + n + " players was accessed"));
             return this.getNPlayersRecursion(n, (ArrayList<Player>) this.board.clone(), this.storage);
-
         }
 
 

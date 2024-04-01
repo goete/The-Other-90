@@ -1,5 +1,7 @@
 package model;
 
+import model.events.Event;
+import model.events.EventLog;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import persistence.Writable;
@@ -31,10 +33,13 @@ public class Leaderboards implements Writable {
 
     // MODIFIES: this
     // EFFECT: adds the player to the correct game and to master list if not there
+    //          Also logs the event
     public void addPlayerToLeaderboard(Player player, Game game) throws InvocationTargetException,
             IllegalAccessException {
         if (!this.allPlayers.contains(player)) {
             this.allPlayers.add(player);
+            EventLog.getInstance().logEvent(new Event(
+                    player.getName() + " was added for the first time to the leaderboards"));
         }
         if (game.getName().equals("Word Recollection")) {
             wordRecollectionAdding(player, game);
@@ -45,33 +50,48 @@ public class Leaderboards implements Writable {
 
     // MODIFIES: this
     // EFFECTS: adds the player to the correct difficulty
+    //          Also logs the event
     private void sumEliminationAdding(Player player, Game game) throws InvocationTargetException,
             IllegalAccessException {
         if (game.getDifficulty().equals("Easy")) {
             this.sumEliminationEasy.addToLeaderboard(player, game);
+            EventLog.getInstance().logEvent(new Event(
+                    player.getName() + " had their Sum Elimination Easy score updated"));
         } else if (game.getDifficulty().equals("Medium")) {
             this.sumEliminationMedium.addToLeaderboard(player, game);
+            EventLog.getInstance().logEvent(new Event(
+                    player.getName() + " had their Sum Elimination Medium score updated"));
         } else {
             this.sumEliminationHard.addToLeaderboard(player, game);
+            EventLog.getInstance().logEvent(new Event(
+                    player.getName() + " had their Sum Elimination Hard score updated"));
         }
     }
 
 
     // MODIFIES: this
     // EFFECTS: adds the player to the correct difficulty
+    //          Also logs the event
     private void wordRecollectionAdding(Player player, Game game) throws InvocationTargetException,
             IllegalAccessException {
         if (game.getDifficulty().equals("Easy")) {
             this.wordRecollectionEasy.addToLeaderboard(player, game);
+            EventLog.getInstance().logEvent(new Event(
+                    player.getName() + " had their Word Recollection Easy score updated"));
         } else if (game.getDifficulty().equals("Medium")) {
             this.wordRecollectionMedium.addToLeaderboard(player, game);
+            EventLog.getInstance().logEvent(new Event(
+                    player.getName() + " had their Word Recollection Medium score updated"));
         } else {
             this.wordRecollectionHard.addToLeaderboard(player, game);
+            EventLog.getInstance().logEvent(new Event(
+                    player.getName() + " had their Word Recollection Hard score updated"));
         }
     }
 
     // MODIFIES: this
     // EFFECTS: adds player to leaderboards all at once and to master list if not there
+    //          Also logs the event
     public void addToAllLeaderboards(Player player) {
         if (!this.allPlayers.contains(player)) {
             this.allPlayers.add(player);
@@ -82,6 +102,8 @@ public class Leaderboards implements Writable {
         this.wordRecollectionEasy.addToLeaderboard(player);
         this.wordRecollectionMedium.addToLeaderboard(player);
         this.wordRecollectionHard.addToLeaderboard(player);
+        EventLog.getInstance().logEvent(new Event(
+                player.getName() + " was added to all Leaderboards"));
     }
 
     public Leaderboard getSumEliminationEasy() {

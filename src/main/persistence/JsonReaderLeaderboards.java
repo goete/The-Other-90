@@ -5,6 +5,8 @@ import model.*;
 import java.io.IOException;
 
 
+import model.events.Event;
+import model.events.EventLog;
 import org.json.*;
 
 // Represents a reader that reads all the leaderboards from JSON data stored in file
@@ -22,6 +24,8 @@ public class JsonReaderLeaderboards extends JsonReader {
     public Leaderboards readLeaderboards() throws IOException {
         String jsonData = super.readFile();
         JSONObject jsonObject = new JSONObject(jsonData);
+        EventLog.getInstance().logEvent(new Event(
+                "Leaderboards were loaded in from file"));
         return parseLeaderboards(jsonObject);
     }
 
