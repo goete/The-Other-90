@@ -56,7 +56,8 @@ tagline in the image . Spell all the words correctly and don't omit any.
 
 # Instructions for Grader
 
-NOTE: Load the high scores before saving in order to make the "adding multiple Xs to a Y" more clear.
+NOTE: Load the high scores before saving in order to make the "adding multiple Xs to a Y" more clear. Additionally,
+the "Sum Elimination" game is currently not functional.
 
 - You can generate the first required action related to the user story "adding multiple Xs to a Y" by running the
   application multiple times, loading then saving your account
@@ -83,10 +84,16 @@ Ethan was added to all Leaderboards <br>
 Sun Mar 31 19:57:04 PDT 2024 <br>
 Ethan had their Word Recollection Hard score updated <br>
 Sun Mar 31 19:57:08 PDT 2024 <br>
-Leaderboards were saved to file <br> 
-Sun Mar 31 19:57:15 PDT 2024 <br> 
+Leaderboards were saved to file <br>
+Sun Mar 31 19:57:15 PDT 2024 <br>
 Ethan had their Word Recollection Easy score updated <br>
 Sun Mar 31 19:57:43 PDT 2024 <br>
 Ethan had their Word Recollection Medium score updated <br>
 Sun Mar 31 19:58:05 PDT 2024 <br>
 Leaderboards were saved to file <br>
+
+# Phase 4: Task 3
+
+If I was to refactor, I would instead of having the panels get the current player and store it as a field, I would
+instead make the current player accessible through the GameGUI instead. This would eliminate a few of the arrows on
+the UML diagram.
