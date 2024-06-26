@@ -10,56 +10,22 @@ import java.awt.event.ActionListener;
 import java.lang.reflect.InvocationTargetException;
 
 // manages the Word Recollection game and respective panel
-public class WordRecollectionPanel extends JPanel implements ActionListener {
+public class WordRecollectionPanel extends GamePanel implements ActionListener {
     private final int height;
     private final int width;
     private JButton seenButton;
     private JButton haveNotSeenButton;
     private WordRecollection wordRecollectionGame;
-    private String currentDifficulty;
-    private boolean gettingDifficulty;
-    private JButton easyButton;
-    private JButton mediumButton;
-    private JButton hardButton;
-    private JButton backButton;
-    private GameGUI gameGUI;
     private String displayWord;
 
     public WordRecollectionPanel(int width, int height, GameGUI game) {
+        super(game);
         this.setPreferredSize(new Dimension(width, height));
         this.setLayout(null);
         this.height = height;
         this.width = width;
         this.setUpButtonsGame();
-        this.setUpButtonsDifficulty();
-        this.gettingDifficulty = true;
-        this.gameGUI = game;
         this.displayWord = null;
-    }
-
-    // MODIFIES: this
-    // EFFECTS: sets up all the buttons for choosing which difficulty is desired
-    private void setUpButtonsDifficulty() {
-        this.easyButton = new JButton("Easy");
-        this.mediumButton = new JButton("Medium");
-        this.hardButton = new JButton("Hard");
-
-        this.easyButton.addActionListener(this);
-        this.mediumButton.addActionListener(this);
-        this.hardButton.addActionListener(this);
-
-        this.easyButton.setSize(150, 150);
-        this.mediumButton.setSize(150, 150);
-        this.hardButton.setSize(150, 150);
-
-        this.easyButton.setLocation(50, 250);
-        this.mediumButton.setLocation(200 + 25, 250);
-        this.hardButton.setLocation(350 + 25 * 2, 250);
-
-        this.backButton = new JButton("back");
-        this.backButton.addActionListener(this);
-        this.backButton.setSize(65, 50);
-        this.backButton.setLocation(0, 0);
     }
 
     // MODIFIES: this
@@ -107,17 +73,6 @@ public class WordRecollectionPanel extends JPanel implements ActionListener {
     }
 
     // MODIFIES: this
-    // EFFECTS: adds the difficulty buttons, removing the game buttons
-    private void paintDifficultyButtons(Graphics graphics) {
-        this.add(this.easyButton);
-        this.add(this.mediumButton);
-        this.add(this.hardButton);
-
-        this.remove(this.haveNotSeenButton);
-        this.remove(this.seenButton);
-    }
-
-    // MODIFIES: this
     // EFFECTS: paints the rules to the screen
     private void paintRuleText(Graphics graphics) {
         graphics.setColor(Color.BLACK);
@@ -140,23 +95,6 @@ public class WordRecollectionPanel extends JPanel implements ActionListener {
         this.remove(this.backButton);
     }
 
-    // MODIFIES: this, gameGUI
-    // EFFECTS: switches the screen back to the main menu
-    //          sets the text at the bottom to show the score
-    private void gameOver() {
-        this.gettingDifficulty = true;
-        try {
-            this.gameGUI.getLeaderboards().addPlayerToLeaderboard(this.gameGUI.getPlayer(), this.wordRecollectionGame);
-        } catch (InvocationTargetException | IllegalAccessException e) {
-            e.printStackTrace();
-        }
-        this.gameGUI.showFrameByString(gameGUI.getTitleMenu());
-        String hold = "You scored: " + this.wordRecollectionGame.getCurrentScore() + "\n"
-                + "The words you saw throughout the game are: \n"
-                + breakUpTheWordsByLines(this.wordRecollectionGame.getWordsFound().toString());
-        this.gameGUI.getMenuPanel().setBottomTextField(hold);
-    }
-
     // EFFECTS: breaking up the given string into 7 word chunks
     private String breakUpTheWordsByLines(String text) {
         StringBuilder answer = new StringBuilder();
@@ -173,16 +111,21 @@ public class WordRecollectionPanel extends JPanel implements ActionListener {
         return answer.toString();
     }
 
+    @Override
     // MODIFIES: this
-    // EFFECTS: adds the back button to the screen
-    private void paintBackArrowButton() {
-        this.add(this.backButton);
-    }
+    // EFFECTS: adds the difficulty buttons, removes the game buttons
+    protected void paintDifficultyButtons(Graphics graphics) {
+        this.add(this.easyButton);
+        this.add(this.mediumButton);
+        this.add(this.hardButton);
 
+        this.remove(this.haveNotSeenButton);
+        this.remove(this.seenButton);
+
+    }
 
     // MODIFIES: this
     // EFFECTS: manages the button pressing and calls the correct methods
-    @Override
     @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
     public void actionPerformed(ActionEvent e) {
         try {
@@ -218,4 +161,23 @@ public class WordRecollectionPanel extends JPanel implements ActionListener {
         this.repaint();
 
     }
+
+    @Override
+    // MODIFIES: this, gameGUI
+    // EFFECTS: switches the screen back to the main menu
+    //          sets the text at the bottom to show the score
+    protected void gameOver() {
+        this.gettingDifficulty = true;
+        try {
+            this.gameGUI.getLeaderboards().addPlayerToLeaderboard(this.gameGUI.getPlayer(), this.wordRecollectionGame);
+        } catch (InvocationTargetException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        this.gameGUI.showFrameByString(gameGUI.getTitleMenu());
+        String hold = "You scored: " + this.wordRecollectionGame.getCurrentScore() + "\n"
+                + "The words you saw throughout the game are: \n"
+                + breakUpTheWordsByLines(this.wordRecollectionGame.getWordsFound().toString());
+        this.gameGUI.getMenuPanel().setBottomTextField(hold);
+    }
+
 }
