@@ -115,7 +115,7 @@ public class GameGUI extends Canvas implements WindowListener, WindowFocusListen
     // EFFECTS: sets up the panels and the screen
     private void setUpPanels() {
         this.menuPanel = new MenuPanel(width, height, this);
-        this.sumEliminationPanel = new SumEliminationPanel(width, height);
+        this.sumEliminationPanel = new SumEliminationPanel(width, height, this);
         this.wordRecollectionPanel = new WordRecollectionPanel(width, height, this);
         this.leaderboardPanel = new LeaderboardPanel(width, height, this.leaderboards, this);
         this.loadingScreenPanel = new LoadingScreenPanel(width, height, this);
