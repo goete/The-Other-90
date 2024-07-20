@@ -59,7 +59,7 @@ public class WordRecollectionPanel extends GamePanel implements ActionListener {
             paintGameButtons(graphics);
             paintRuleText(graphics);
             paintGameText(graphics);
-            removeDifficultyButtons();
+            removeDifficultyAndBackButtons();
         }
 
     }
