@@ -44,9 +44,7 @@ public class WordRecollectionPanel extends GamePanel implements ActionListener {
     // EFFECTS: paints over the screen then calls the correct methods based on the game status
     @Override
     public void paintComponent(final Graphics graphics) {
-        graphics.setColor(Color.LIGHT_GRAY);
-        graphics.clearRect(0, 0, width, height);
-        graphics.fillRect(0, 0, width, height);
+        screenReset(graphics);
         if (gettingDifficulty) {
             paintDifficultyButtons(graphics);
             paintBackArrowButton();

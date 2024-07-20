@@ -10,25 +10,19 @@ import java.lang.reflect.InvocationTargetException;
 
 // panel for Sum Elimination game
 public class SumEliminationPanel extends GamePanel implements ActionListener {
-    private final int height;
-    private final int width;
     private SumElimination sumEliminationGame;
 
     public SumEliminationPanel(int width, int height, GameGUI game) {
-        super(game);
+        super(width, height, game);
         this.setPreferredSize(new Dimension(width, height));
         this.setLayout(null);
-        this.height = height;
-        this.width = width;
     }
 
     // MODIFIES: this
     // EFFECTS: paints over the screen then calls the correct methods based on the game status
     @Override
     public void paintComponent(final Graphics graphics) {
-        graphics.setColor(Color.LIGHT_GRAY);
-        graphics.clearRect(0, 0, width, height);
-        graphics.fillRect(0, 0, width, height);
+        screenReset(graphics);
         if (gettingDifficulty) {
             paintDifficultyButtons(graphics);
             paintBackArrowButton();
