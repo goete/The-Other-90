@@ -92,15 +92,6 @@ public class WordRecollectionPanel extends GamePanel implements ActionListener {
         this.add(this.seenButton);
     }
 
-    // MODIFIES: this
-    // EFFECTS: removes the difficulty buttons
-    private void removeDifficultyButtons() {
-        this.remove(this.easyButton);
-        this.remove(this.mediumButton);
-        this.remove(this.hardButton);
-        this.remove(this.backButton);
-    }
-
     // EFFECTS: breaking up the given string into 7 word chunks
     private String breakUpTheWordsByLines(String text) {
         StringBuilder answer = new StringBuilder();
@@ -118,14 +109,6 @@ public class WordRecollectionPanel extends GamePanel implements ActionListener {
     }
 
     @Override
-    // MODIFIES: this
-    // EFFECTS: adds the difficulty buttons
-    protected void paintDifficultyButtons(Graphics graphics) {
-        this.add(this.easyButton);
-        this.add(this.mediumButton);
-        this.add(this.hardButton);
-    }
-
     // MODIFIES: this
     // EFFECTS: removes the game buttons
     protected void removeGameButtons() {

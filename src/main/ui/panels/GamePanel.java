@@ -55,10 +55,21 @@ public abstract class GamePanel extends JPanel implements ActionListener {
         this.add(this.hardButton);
     }
 
+    // MODIFIES: this
+    // EFFECTS: removes the difficulty buttons
+    protected void removeDifficultyButtons() {
+        this.remove(this.easyButton);
+        this.remove(this.mediumButton);
+        this.remove(this.hardButton);
+        this.remove(this.backButton);
+    }
+
     // MODIFIES: this, gameGUI
     // EFFECTS: switches the screen back to the main menu
     //          sets the text at the bottom to show the score
     protected abstract void gameOver();
+
+    protected abstract void removeGameButtons();
 
     // MODIFIES: this
     // EFFECTS: adds the back button to the screen
