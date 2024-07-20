@@ -8,6 +8,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public abstract class GamePanel extends JPanel implements ActionListener {
+    protected final int height;
+    protected final int width;
     protected boolean gettingDifficulty;
     protected JButton easyButton;
     protected JButton mediumButton;
@@ -16,10 +18,12 @@ public abstract class GamePanel extends JPanel implements ActionListener {
     protected GameGUI gameGUI;
     private String currentDifficulty;
 
-    public GamePanel(GameGUI game) {
+    public GamePanel(int width, int height, GameGUI game) {
         this.gettingDifficulty = true;
         this.gameGUI = game;
         setUpButtonsDifficulty();
+        this.height = height;
+        this.width = width;
     }
 
     // MODIFIES: this
@@ -62,6 +66,12 @@ public abstract class GamePanel extends JPanel implements ActionListener {
         this.remove(this.mediumButton);
         this.remove(this.hardButton);
         this.remove(this.backButton);
+    }
+
+    protected void screenReset(final Graphics graphics) {
+        graphics.setColor(Color.LIGHT_GRAY);
+        graphics.clearRect(0, 0, width, height);
+        graphics.fillRect(0, 0, width, height);
     }
 
     // MODIFIES: this, gameGUI

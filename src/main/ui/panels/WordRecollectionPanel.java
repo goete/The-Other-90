@@ -11,19 +11,15 @@ import java.lang.reflect.InvocationTargetException;
 
 // manages the Word Recollection game and respective panel
 public class WordRecollectionPanel extends GamePanel implements ActionListener {
-    private final int height;
-    private final int width;
     private JButton seenButton;
     private JButton haveNotSeenButton;
     private WordRecollection wordRecollectionGame;
     private String displayWord;
 
     public WordRecollectionPanel(int width, int height, GameGUI game) {
-        super(game);
+        super(width, height, game);
         this.setPreferredSize(new Dimension(width, height));
         this.setLayout(null);
-        this.height = height;
-        this.width = width;
         this.setUpButtonsGame();
         this.displayWord = null;
     }
