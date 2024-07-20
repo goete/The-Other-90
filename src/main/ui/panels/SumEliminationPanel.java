@@ -1,10 +1,8 @@
 package ui.panels;
 
 import model.SumElimination;
-import model.WordRecollection;
 import ui.GameGUI;
 
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,6 +12,7 @@ import java.lang.reflect.InvocationTargetException;
 public class SumEliminationPanel extends GamePanel implements ActionListener {
     private final int height;
     private final int width;
+    private SumElimination sumEliminationGame;
 
     public SumEliminationPanel(int width, int height, GameGUI game) {
         super(game);
@@ -33,8 +32,10 @@ public class SumEliminationPanel extends GamePanel implements ActionListener {
         if (gettingDifficulty) {
             paintDifficultyButtons(graphics);
             paintBackArrowButton();
+            removeGameButtons();
         } else {
-            // paintGameButtons(graphics);
+            paintGameButtons(graphics);
+            removeDifficultyAndBackButtons();
             // paintRuleText(graphics);
             // paintGameText(graphics);
         }
@@ -42,18 +43,44 @@ public class SumEliminationPanel extends GamePanel implements ActionListener {
     }
 
     @Override
+    // MODIFIES: this
+    // EFFECTS: removes the game buttons
+    protected void removeGameButtons() {
+    }
+
+    private void paintGameButtons(Graphics graphics) {
+    }
+
+    @Override
+    // MODIFIES: this, gameGUI
+    // EFFECTS: switches the screen back to the main menu
+    //          sets the text at the bottom to show the score
     protected void gameOver() {
+        this.gettingDifficulty = true;
+        try {
+            this.gameGUI.getLeaderboards().addPlayerToLeaderboard(this.gameGUI.getPlayer(), this.sumEliminationGame);
+        } catch (InvocationTargetException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        this.gameGUI.showFrameByString(gameGUI.getTitleMenu());
+        String hold = "You scored: " + this.sumEliminationGame.getCurrentScore();
+        this.gameGUI.getMenuPanel().setBottomTextField(hold);
 
     }
 
+    // MODIFIES: this
+    // EFFECTS: manages the button pressing and calls the correct methods
     @Override
     public void actionPerformed(ActionEvent e) {
         try {
             if (e.getSource() == this.easyButton) {
+                this.sumEliminationGame = new SumElimination("Easy");
                 this.gettingDifficulty = false;
             } else if (e.getSource() == this.mediumButton) {
+                this.sumEliminationGame = new SumElimination("Medium");
                 this.gettingDifficulty = false;
             } else if (e.getSource() == this.hardButton) {
+                this.sumEliminationGame = new SumElimination("Hard");
                 this.gettingDifficulty = false; //add after here
             } else if (e.getSource() == this.backButton) {
                 this.gameGUI.showFrameByString(gameGUI.getTitleMenu());
