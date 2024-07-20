@@ -54,10 +54,12 @@ public class WordRecollectionPanel extends GamePanel implements ActionListener {
         if (gettingDifficulty) {
             paintDifficultyButtons(graphics);
             paintBackArrowButton();
+            removeGameButtons();
         } else {
             paintGameButtons(graphics);
             paintRuleText(graphics);
             paintGameText(graphics);
+            removeDifficultyButtons();
         }
 
     }
@@ -84,11 +86,15 @@ public class WordRecollectionPanel extends GamePanel implements ActionListener {
     }
 
     // MODIFIES: this
-    // EFFECTS: puts the game buttons on the screen and removes the difficulty buttons
+    // EFFECTS: puts the game buttons on the screen
     private void paintGameButtons(Graphics graphics) {
         this.add(this.haveNotSeenButton);
         this.add(this.seenButton);
+    }
 
+    // MODIFIES: this
+    // EFFECTS: removes the difficulty buttons
+    private void removeDifficultyButtons() {
         this.remove(this.easyButton);
         this.remove(this.mediumButton);
         this.remove(this.hardButton);
@@ -113,15 +119,18 @@ public class WordRecollectionPanel extends GamePanel implements ActionListener {
 
     @Override
     // MODIFIES: this
-    // EFFECTS: adds the difficulty buttons, removes the game buttons
+    // EFFECTS: adds the difficulty buttons
     protected void paintDifficultyButtons(Graphics graphics) {
         this.add(this.easyButton);
         this.add(this.mediumButton);
         this.add(this.hardButton);
+    }
 
+    // MODIFIES: this
+    // EFFECTS: removes the game buttons
+    protected void removeGameButtons() {
         this.remove(this.haveNotSeenButton);
         this.remove(this.seenButton);
-
     }
 
     // MODIFIES: this
