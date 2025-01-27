@@ -17,6 +17,7 @@ public abstract class GamePanel extends JPanel implements ActionListener {
     protected JButton backButton;
     protected GameGUI gameGUI;
     private String currentDifficulty;
+    private Integer time;
 
     public GamePanel(int width, int height, GameGUI game) {
         this.gettingDifficulty = true;
@@ -68,6 +69,7 @@ public abstract class GamePanel extends JPanel implements ActionListener {
         this.remove(this.backButton);
     }
 
+
     protected void screenReset(final Graphics graphics) {
         graphics.setColor(Color.LIGHT_GRAY);
         graphics.clearRect(0, 0, width, height);
@@ -78,6 +80,8 @@ public abstract class GamePanel extends JPanel implements ActionListener {
     // EFFECTS: switches the screen back to the main menu
     //          sets the text at the bottom to show the score
     protected abstract void gameOver();
+
+    protected abstract void paintTimer(Graphics graphics);
 
     protected abstract void removeGameButtons();
 

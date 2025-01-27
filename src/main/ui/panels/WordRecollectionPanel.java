@@ -15,6 +15,7 @@ public class WordRecollectionPanel extends GamePanel implements ActionListener {
     private JButton haveNotSeenButton;
     private WordRecollection wordRecollectionGame;
     private String displayWord;
+    private boolean firstTime;
 
     public WordRecollectionPanel(int width, int height, GameGUI game) {
         super(width, height, game);
@@ -22,6 +23,7 @@ public class WordRecollectionPanel extends GamePanel implements ActionListener {
         this.setLayout(null);
         this.setUpButtonsGame();
         this.displayWord = null;
+        firstTime = true;
     }
 
     // MODIFIES: this
@@ -50,10 +52,15 @@ public class WordRecollectionPanel extends GamePanel implements ActionListener {
             paintBackArrowButton();
             removeGameButtons();
         } else {
-            paintGameButtons(graphics);
+            if (firstTime) {
+                paintGameButtons(graphics);
+
+                removeDifficultyAndBackButtons();
+            }
+            firstTime = false;
+            paintTimer(graphics);
             paintRuleText(graphics);
             paintGameText(graphics);
-            removeDifficultyAndBackButtons();
         }
 
     }
@@ -77,6 +84,21 @@ public class WordRecollectionPanel extends GamePanel implements ActionListener {
         graphics.setFont(new Font("MonoLisa", Font.PLAIN, 15));
         graphics.drawString("If you have seen the listed word previously in this round, click yes.", 50, 560);
         graphics.drawString("Otherwise, click no", 50, 575);
+    }
+
+    protected void paintTimer(final Graphics graphics) {
+        graphics.setColor(Color.BLACK);
+        graphics.setFont(new Font("MonoLisa", Font.BOLD, 40));
+        graphics.drawString(
+                Long.toString(wordRecollectionGame.getRoundTimeInSeconds()
+                        - (System.currentTimeMillis() - wordRecollectionGame.getTimeThatRoundStarted()) / 1000),
+                550,
+                75);
+        if ((wordRecollectionGame.getRoundTimeInSeconds()
+                - (System.currentTimeMillis() - wordRecollectionGame.getTimeThatRoundStarted()) / 1000) < 0) {
+            gameOver();
+        }
+        repaint();
     }
 
     // MODIFIES: this
@@ -144,6 +166,7 @@ public class WordRecollectionPanel extends GamePanel implements ActionListener {
         } catch (Exception ee) {
             ee.printStackTrace();
         }
+        firstTime = true;
         this.repaint();
 
     }
