@@ -114,6 +114,8 @@ public class SumElimination extends Game {
         }
     }
 
+    // REQUIRES: An array list where each number is contained in this.numbers
+    // EFFECTS: returns whether the answer was correct
     public boolean isAnswerCorrect(ArrayList<Integer> answer) {
         for (Integer i : answer) {
             if (this.numbers.contains(i)) {
