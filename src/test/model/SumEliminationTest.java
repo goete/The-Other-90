@@ -78,7 +78,7 @@ public class SumEliminationTest {
     }
 
     @Test
-    public void correctAnswerTest() {
+    public void correctAnswerTestString() {
         this.sumEasy.setTarget(10);
         this.sumEasy.getNumbers().add(10);
         this.sumEasy.getNumbers().add(5);
@@ -89,6 +89,21 @@ public class SumEliminationTest {
 
         // checking to make sure the guard is in place and works
         assertFalse(this.sumEasy.isAnswerCorrect("a,3,2,3"));
+    }
+
+    @Test
+    public void correctAnswerTestArrayList() {
+        this.sumEasy.setTarget(10);
+        this.sumEasy.getNumbers().add(10);
+        this.sumEasy.getNumbers().add(5);
+
+        ArrayList<Integer> answer = new ArrayList<>();
+        answer.add(1);
+        answer.add(4);
+        answer.add(5);
+        this.sumEasy.getNumbers().add(5);
+        assertFalse(this.sumEasy.isAnswerCorrect(answer));
+
     }
 
     @Test
