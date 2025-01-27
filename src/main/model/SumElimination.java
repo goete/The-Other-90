@@ -114,6 +114,19 @@ public class SumElimination extends Game {
         }
     }
 
+    public boolean isAnswerCorrect(ArrayList<Integer> answer) {
+        for (Integer i : answer) {
+            if (this.numbers.contains(i)) {
+                this.numbers.remove(i);
+            }
+        }
+        int hold = 0;
+        for (int n : this.numbers) {
+            hold += n;
+        }
+        return hold == this.target;
+    }
+
     // REQUIRES: string array where each position is an integer
     // EFFECTS: returns the sum of the array terms
     private int addAnswer(String[] splitByComma) {
