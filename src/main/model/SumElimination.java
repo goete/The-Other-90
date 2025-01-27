@@ -25,20 +25,20 @@ public class SumElimination extends Game {
         resetGame();
         if (difficulty.equals("Easy")) {
             this.lowerBound = 1;
-            this.upperBound = 20;
+            this.upperBound = 10;
             this.lowerNumberOfGiven = this.upperNumberOfGiven = 3;
             this.lowerNumberToKeep = 1;
             this.upperNumberToKeep = 2;
         } else if (difficulty.equals("Medium")) {
             this.lowerBound = 1;
-            this.upperBound = 100;
+            this.upperBound = 15;
             this.lowerNumberOfGiven = 4;
             this.upperNumberOfGiven = 5;
             this.lowerNumberToKeep = 1;
             this.upperNumberToKeep = 4;
         } else {
-            this.lowerBound = -100;
-            this.upperBound = 100;
+            this.lowerBound = -20;
+            this.upperBound = 20;
             this.lowerNumberOfGiven = this.upperNumberToKeep = 4;
             this.upperNumberOfGiven = 6;
             this.lowerNumberToKeep = 0;
